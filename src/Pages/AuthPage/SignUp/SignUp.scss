@@ -1,0 +1,17 @@
+.signUp {
+    width: 100%;
+    height: fit-content;
+    &__title {
+        text-align: center;
+        margin-bottom: 57px !important;
+    }
+    &__form > *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    &__button {
+        width: 100%;
+    }
+    &__buttons > *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+}

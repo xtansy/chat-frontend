@@ -1,0 +1,16 @@
+.signIn {
+    width: 100%;
+    &__title {
+        text-align: center;
+        margin-bottom: 57px !important;
+    }
+    &__form {
+        margin-bottom: 70px;
+    }
+    &__form > *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    &__buttons > *:not(:last-child) {
+        margin-bottom: 15px;
+    }
+}
