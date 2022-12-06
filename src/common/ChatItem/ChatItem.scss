@@ -1,6 +1,12 @@
 .chatItem {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    &__info {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .chatItem__left {

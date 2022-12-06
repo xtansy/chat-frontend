@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { ROUTES } from "@utils/constants";
 
-import { AuthPage } from "./Pages/AuthPage";
+import { AuthPage, HomePage } from "@pages";
 
 const AuthApp = () => {
     return (
@@ -13,7 +13,9 @@ const AuthApp = () => {
 };
 
 const App = () => {
-    return <AuthApp />;
+    const isAuth = true;
+
+    return <>{isAuth ? <HomePage /> : <AuthPage />}</>;
 };
 
 export default App;

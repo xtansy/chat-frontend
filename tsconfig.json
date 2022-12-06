@@ -19,6 +19,7 @@
         "paths": {
             "@store": ["./src/redux"],
             "@utils/constants": ["./src/utils/constants"],
+            "@pages": ["./src/Pages"],
             "@common": ["./src/common"]
         }
     },
