@@ -5,7 +5,8 @@ import { useEffect } from "react";
 
 import { ROUTES } from "@utils/constants";
 import { AuthPage, HomePage, ProfilePage } from "@pages";
-import { userSliceSelector } from "@redux/userSlice/selectors";
+import { userSliceSelector, userIsAuthSelector } from "@redux/userSlice/selectors";
+import { useAuth } from "@utils/api/hooks";
 
 const AuthApp = () => {
     return (
@@ -17,27 +18,18 @@ const AuthApp = () => {
 };
 
 const App = () => {
-    const navigate = useNavigate();
 
-    const { isAuth } = useSelector(userSliceSelector);
+    useAuth();
 
-    useEffect(() => {
-        if (isAuth) {
-            navigate(ROUTES.HOME);
-            return;
-        }
-        navigate(ROUTES.AUTH);
-    }, [isAuth])
-
-    console.log("isAuth", isAuth);
+    const isAuth = useSelector(userIsAuthSelector);
 
     return (
         <>
-            {!isAuth && <AuthPage />}
+            {!isAuth && <AuthApp />}
             {isAuth && (
                 <Routes>
-                    <Route path={ROUTES.HOME} element={<HomePage />} />
                     <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+                    <Route path={"*"} element={<HomePage />} />
                 </Routes>
             )}
         </>

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import { signIn } from "@utils/api/requests/auth";
+import { getMe } from "@utils/api/requests/user";
 import { AxiosError } from "axios";
 
 interface UserSliceProps {
@@ -25,16 +26,49 @@ export const fetchSignIn = createAsyncThunk<signInResult, signInProps, { rejectV
     }
 });
 
-
+export const fetchGetMe = createAsyncThunk<Response<UserResponse>, void, { rejectValue: any }>("userSlice/fetchGetMe", async (_, { rejectWithValue }) => {
+    try {
+        return await getMe();
+    } catch (error) {
+        const err = error as AxiosError;
+        return rejectWithValue(err.response?.data);
+    }
+});
 const userSlice = createSlice({
     name: "userSlice",
     initialState,
     reducers: {
-        // changePaginateCount: (state, action: PayloadAction<boolean>) => {
-        //     state.loadingStatus = action.payload;
-        // },
+        logout: (state) => {
+            state.isAuth = false;
+            state.user = null;
+            state.isLoading = false;
+            state.isError = null;
+            localStorage.removeItem("token");
+        },
     },
     extraReducers: (builder) => {
+
+        builder.addCase(fetchGetMe.pending, (state) => {
+            state.isLoading = true;
+
+        })
+        builder.addCase(fetchGetMe.rejected, (state, action) => {
+            state.isAuth = false;
+            state.isLoading = false;
+            state.isError = action.payload.message;
+            state.user = null;
+        })
+        builder.addCase(fetchGetMe.fulfilled, (state, action) => {
+            state.isError = null;
+            state.isAuth = true;
+            state.isLoading = false;
+            const { password, ...user } = action.payload.data;
+            state.user = user;
+        })
+
+
+
+        ////////////////////////////////////
         builder.addCase(fetchSignIn.pending, (state) => {
             state.isLoading = true;
         })
@@ -47,11 +81,12 @@ const userSlice = createSlice({
             state.isError = null;
             state.isAuth = true;
             state.isLoading = false;
-            const { password, ...user } = action.payload.user;
+            const { password, ...user } = action.payload.data;
             state.user = user;
         })
     }
 });
 
 const { actions, reducer } = userSlice;
+export const { logout } = actions;
 export default reducer;

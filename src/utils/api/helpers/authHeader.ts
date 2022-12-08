@@ -1,9 +1,4 @@
-
-interface authHeaderResult {
-    'x-access-token': string;
-}
-
-export const authHeader: authHeaderResult | {} = () => {
+export const authHeader = () => {
     const token = localStorage.getItem('token');
 
     if (token) {

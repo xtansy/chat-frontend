@@ -1,6 +1,8 @@
-import { Input, Space, Typography } from "antd";
-const { Text, Link } = Typography;
+import { Input, Typography } from "antd";
+const { Text } = Typography;
 const { Search } = Input;
+import { Link } from "react-router-dom";
+import { ROUTES } from "@utils/constants";
 
 import { ChatItem, HR, Chat } from "@common";
 import "./HomePage.scss";
@@ -13,7 +15,7 @@ export const HomePage = () => {
         <div className="home">
             <div className="home__left">
                 <Text className="home__left-title" type="secondary">
-                    Профиль
+                    <Link to={ROUTES.PROFILE}>Профиль</Link>
                 </Text>
                 <Search
                     className="home__left-input"

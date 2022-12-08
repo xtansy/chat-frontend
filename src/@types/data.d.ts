@@ -5,12 +5,6 @@ interface signUpProps {
     email: string;
     password: string;
 }
-interface useSignUpResult {
-    data: signUpProps & { _id: string };
-    message: string;
-}
-
-
 interface signInProps {
     login: string;
     password: string;
@@ -29,9 +23,20 @@ interface User {
     role: Role;
 }
 
-interface signInResult {
+interface Response<T> {
     message: string;
-    user: User & { password: string };
+    data: T;
+}
+
+type UserResponse = User & { password: string };
+
+interface useSignUpResult extends Response<UserResponse> { }
+
+interface signInResult extends Response<UserResponse> {
     accessToken: string;
 }
+
+
+
+
 

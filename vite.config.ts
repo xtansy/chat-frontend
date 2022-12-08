@@ -23,6 +23,10 @@ export default defineConfig({
                 __dirname,
                 "./src/utils/api/requests/auth"
             ),
+            "@utils/api/requests/user": path.resolve(
+                __dirname,
+                "./src/utils/api/requests/user"
+            ),
         },
     },
 });

@@ -5,49 +5,51 @@ import { Avatar } from "antd";
 import { Typography } from "antd";
 const { Title } = Typography;
 const { Text, Link } = Typography;
+import { useNavigate } from "react-router-dom";
+
+import { ROUTES } from "@utils/constants";
+import { Field } from "./Field/Field";
+import { logout } from "@redux/userSlice";
+import { useAppDispatch } from "@store";
 
 export const ProfilePage = () => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const onClickArrow = () => {
+        navigate(ROUTES.HOME);
+    }
+    const onClickLogout = () => {
+        dispatch(logout());
+    }
     return (
         <>
             <div className="arrowWrapper">
                 <ArrowLeftOutlined
+                    onClick={onClickArrow}
                     className="arrowWrapper__arrow"
                     style={{
                         fontSize: 40,
                     }}
                 />
             </div>
-            <div className="profile">
-                <div className="profile__header">
-                    <Avatar size={130} icon={<UserOutlined />} />
-                    <Title>Ваня</Title>
-                </div>
-                <div className="profile__info">
-                    <div className="profile__info-item">
-                        <Text>Почта</Text>
-                        <Text type="secondary">pochta@bk.ru</Text>
+            <div className="profileWrapper">
+                <div className="profile">
+                    <div className="profile__header">
+                        <Avatar size={130} icon={<UserOutlined />} />
+                        <Title className="profile__header-title">Ваня</Title>
                     </div>
-                    <div className="profile__info-item">
-                        <Text>Почта</Text>
-                        <Text type="secondary">pochta@bk.ru</Text>
+                    <div className="profile__info">
+                        <Field Component={Text} name={"Почта"} value={"Pochta@bk.ru"} />
+                        <Field Component={Text} name={"Логин"} value={"login"} />
+                        <Field Component={Text} name={"Имя"} value={"name"} />
+                        <Field Component={Text} name={"Фамилия"} value={"surname"} />
                     </div>
-                    <div className="profile__info-item">
-                        <Text>Почта</Text>
-                        <Text type="secondary">pochta@bk.ru</Text>
+                    <div className="profile__settings">
+                        <Field Component={Link} name={"Изменить данные"} />
+                        <Field Component={Link} name={"Изменить пароль"} />
+                        <Field onClick={onClickLogout} Component={Link} name={"Выйти"} nameType="danger" />
                     </div>
-                    <div className="profile__info-item">
-                        <Text>Почта</Text>
-                        <Text type="secondary">pochta@bk.ru</Text>
-                    </div>
-                </div>
-                <div className="profile__settings">
-                    <Link href="https://ant.design" target="_blank">
-                        Изменить данные
-                    </Link>
-                    <Link href="https://ant.design" target="_blank">
-                        Изменить пароль
-                    </Link>
-                    <Text type="danger">Выйти</Text>
                 </div>
             </div>
         </>

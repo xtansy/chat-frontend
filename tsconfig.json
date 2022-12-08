@@ -2,7 +2,11 @@
     "compilerOptions": {
         "target": "ESNext",
         "useDefineForClassFields": true,
-        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ],
         "allowJs": false,
         "skipLibCheck": true,
         "esModuleInterop": false,
@@ -17,16 +21,42 @@
         "jsx": "react-jsx",
         // "baseUrl": "./src",
         "paths": {
-            "@store": ["./src/redux"],
-            "@utils/constants": ["./src/utils/constants"],
-            "@utils/api/hooks": ["./src/utils/api/hooks"],
-            "@utils/api/requests/auth": ["./src/utils/api/requests/auth"],
-            "@pages": ["./src/Pages"],
-            "@common": ["./src/common"],
-            "@redux/userSlice": ["./src/redux/userSlice"],
-            "@redux/userSlice/selectors": ["./src/redux/userSlice/selectors"]
+            "@store": [
+                "./src/redux"
+            ],
+            "@utils/constants": [
+                "./src/utils/constants"
+            ],
+            "@utils/api/hooks": [
+                "./src/utils/api/hooks"
+            ],
+            "@utils/api/requests/auth": [
+                "./src/utils/api/requests/auth"
+            ],
+            "@utils/api/requests/user": [
+                "./src/utils/api/requests/user"
+            ],
+            "@pages": [
+                "./src/Pages"
+            ],
+            "@common": [
+                "./src/common"
+            ],
+            "@redux/userSlice": [
+                "./src/redux/userSlice"
+            ],
+            "@redux/userSlice/selectors": [
+                "./src/redux/userSlice/selectors"
+            ]
         }
     },
-    "include": ["**/*.ts", "**/*.tsx"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": [
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
 }

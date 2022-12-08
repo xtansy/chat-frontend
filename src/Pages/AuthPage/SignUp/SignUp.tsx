@@ -34,6 +34,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }
         }
     }, [data, error])
 
+
     return (
         <div className="signUp">
             <Typography.Title className="signUp__title">
