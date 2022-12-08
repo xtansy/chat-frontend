@@ -19,8 +19,12 @@
         "paths": {
             "@store": ["./src/redux"],
             "@utils/constants": ["./src/utils/constants"],
+            "@utils/api/hooks": ["./src/utils/api/hooks"],
+            "@utils/api/requests/auth": ["./src/utils/api/requests/auth"],
             "@pages": ["./src/Pages"],
-            "@common": ["./src/common"]
+            "@common": ["./src/common"],
+            "@redux/userSlice": ["./src/redux/userSlice"],
+            "@redux/userSlice/selectors": ["./src/redux/userSlice/selectors"]
         }
     },
     "include": ["**/*.ts", "**/*.tsx"],

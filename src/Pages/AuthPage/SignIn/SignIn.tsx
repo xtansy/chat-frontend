@@ -7,14 +7,15 @@ import {
     infoRules,
 } from "@utils/constants";
 
-interface SignInFormProps {
-    login: string;
-    password: string;
-}
+import { fetchSignIn } from "@redux/userSlice";
+import { useAppDispatch } from "@store";
+
+
 
 export const SignIn = () => {
-    const onFinish = (values: SignInFormProps) => {
-        console.log("Received values of form: ", values);
+    const dispatch = useAppDispatch();
+    const onFinish = (values: signInProps) => {
+        dispatch(fetchSignIn(values));
     };
     return (
         <div className="signIn">

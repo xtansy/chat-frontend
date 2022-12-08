@@ -1,5 +1,6 @@
 import { Typography, Input, Button } from "antd";
 import { Form } from "antd";
+import { useEffect } from "react";
 
 import "./SignUp.scss";
 import {
@@ -7,19 +8,32 @@ import {
     passwordRules,
     confirmPasswordRules,
     infoRules,
+    emailRules,
 } from "@utils/constants";
+import { useSignUp } from "@utils/api/hooks";
 
-interface SignUpFormProps {
-    username: string;
-    password: string;
-    name: string;
-    surname: string;
+interface SignUpProps {
+    onSuccesSignUp: () => void;
+    onFailedSignUp: (errorMessage: string) => void;
 }
+export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }) => {
+    const { data, isLoading, isError, fetchSignUp, error } = useSignUp();
 
-export const SignUp = () => {
-    const onFinish = (values: SignUpFormProps) => {
-        console.log("Received values of form: ", values);
+    const onFinish = (values: signUpProps & { confirm: string }) => {
+        const { confirm, ...obj } = values;
+        fetchSignUp(obj);
     };
+
+    useEffect(() => {
+        if (!error && !!data) {
+            onSuccesSignUp();
+            return;
+        }
+        if (error) {
+            onFailedSignUp(error);
+        }
+    }, [data, error])
+
     return (
         <div className="signUp">
             <Typography.Title className="signUp__title">
@@ -29,6 +43,9 @@ export const SignUp = () => {
                 <Form onFinish={onFinish} name="signUp">
                     <Form.Item name="login" rules={loginRules}>
                         <Input placeholder="Логин" />
+                    </Form.Item>
+                    <Form.Item name="email" rules={emailRules}>
+                        <Input placeholder="Эмайл" />
                     </Form.Item>
                     <Form.Item name="name" rules={infoRules}>
                         <Input placeholder="Имя" />
