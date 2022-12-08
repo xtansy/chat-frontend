@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import tags from "./testSlice/testSlice";
+import userSlice from "./userSlice/userSlice";
 
 const store = configureStore({
-    reducer: { tags },
+    reducer: { userSlice },
 });
 
 type AppDispatch = typeof store.dispatch;

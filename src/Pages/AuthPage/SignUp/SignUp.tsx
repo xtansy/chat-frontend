@@ -7,19 +7,22 @@ import {
     passwordRules,
     confirmPasswordRules,
     infoRules,
+    emailRules,
 } from "@utils/constants";
-
-interface SignUpFormProps {
-    username: string;
-    password: string;
-    name: string;
-    surname: string;
-}
+import { useSignUp } from "@utils/api/hooks";
 
 export const SignUp = () => {
-    const onFinish = (values: SignUpFormProps) => {
-        console.log("Received values of form: ", values);
+    const { data, isLoading, isError, fetchSignUp, error } = useSignUp();
+
+    const onFinish = (values: signUpProps & { confirm: string }) => {
+        const { confirm, ...obj } = values;
+        fetchSignUp(obj);
     };
+
+    console.log("error", error);
+    console.log("data", data);
+    console.log("isLoading", isLoading);
+    console.log("isError", isError);
     return (
         <div className="signUp">
             <Typography.Title className="signUp__title">
@@ -29,6 +32,9 @@ export const SignUp = () => {
                 <Form onFinish={onFinish} name="signUp">
                     <Form.Item name="login" rules={loginRules}>
                         <Input placeholder="Логин" />
+                    </Form.Item>
+                    <Form.Item name="email" rules={emailRules}>
+                        <Input placeholder="Эмайл" />
                     </Form.Item>
                     <Form.Item name="name" rules={infoRules}>
                         <Input placeholder="Имя" />

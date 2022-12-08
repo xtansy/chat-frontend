@@ -27,6 +27,7 @@ const min = (count: number) => {
 };
 
 const loginRules: Rule[] = [required(true, "Введите логин!"), max(7), min(3)];
+const emailRules: Rule[] = [required(true, "Введите эмайл!"), max(12), min(5)];
 
 const infoRules: Rule[] = [required(true, "Поле обязательно!"), max(7), min(3)];
 
@@ -48,4 +49,10 @@ const confirmPasswordRules: Rule[] = [
     }),
 ];
 
-export { loginRules, passwordRules, confirmPasswordRules, infoRules };
+export {
+    loginRules,
+    passwordRules,
+    confirmPasswordRules,
+    infoRules,
+    emailRules,
+};

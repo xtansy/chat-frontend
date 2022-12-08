@@ -13,6 +13,10 @@ export default defineConfig({
             ),
             "@common": path.resolve(__dirname, "./src/common"),
             "@pages": path.resolve(__dirname, "./src/Pages"),
+            "@utils/api/hooks": path.resolve(
+                __dirname,
+                "./src/utils/api/hooks"
+            ),
         },
     },
 });
