@@ -6,17 +6,36 @@ import {
     MoreOutlined,
 } from "@ant-design/icons";
 const { Text } = Typography;
-import "./Chat.scss";
-import { HR } from "@common";
-import { Message } from "./Message/Message";
 import { Input } from "antd";
 const { TextArea } = Input;
-export const Chat = () => {
+import { useState } from "react";
+
+import { Message } from "./Message/Message";
+import "./Chat.scss";
+import { socket } from "../../../utils/socket";
+
+interface ChatProps {
+    dialog: Dialog
+    sendMessage: (obj: { dialogId: string; message: string }) => void;
+}
+
+export const Chat: React.FC<ChatProps> = ({ dialog, sendMessage }) => {
+
+    const partner = dialog.partner;
+
+    const [message, setMessage] = useState<undefined | string>(undefined);
+
     const onChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        console.log(e);
+        setMessage(e.target.value);
     };
+
+    const onSendMessage = () => {
+        if (message) {
+            sendMessage({ dialogId: dialog._id, message });
+        }
+    }
 
     return (
         <div className="chat">
@@ -24,7 +43,7 @@ export const Chat = () => {
                 <div className="chat__header-info">
                     <Avatar size={34} icon={<UserOutlined width={47} />} />
                     <div className="chatItem__info">
-                        <Text strong>Вадим</Text>
+                        <Text strong>{partner.name}</Text>
                     </div>
                 </div>
                 <MoreOutlined
@@ -35,16 +54,15 @@ export const Chat = () => {
                 />
             </div>
             <div className="chat__messages">
-                <Message
-                    isMy={false}
-                    text={
-                        "Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро."
-                    }
-                />
-                <Message isMy={true} text={"Круто!"} />
+                {
+                    dialog.messages.map((item, i) => {
+                        return (
+                            <Message key={i} isMy={false} text={item} />
+                        )
+                    })
+                }
             </div>
             <div className="chat__footer">
-                <HR />
                 <div className="chat__footer-items">
                     <PaperClipOutlined
                         style={{
@@ -54,11 +72,12 @@ export const Chat = () => {
                         }}
                     />
                     <TextArea
+                        value={message}
                         placeholder="Сообщение"
                         allowClear
                         onChange={onChange}
                     />
-                    <div className="chat__footer-send">
+                    <div onClick={onSendMessage} className="chat__footer-send">
                         <ArrowRightOutlined
                             style={{
                                 fontSize: "28px",

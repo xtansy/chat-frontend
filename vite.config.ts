@@ -8,7 +8,9 @@ export default defineConfig({
         alias: {
             "@store": path.resolve(__dirname, "./src/redux/"),
             "@redux/userSlice": path.resolve(__dirname, "./src/redux/userSlice"),
+            "@redux/dialogSlice": path.resolve(__dirname, "./src/redux/dialogSlice"),
             "@redux/userSlice/selectors": path.resolve(__dirname, "./src/redux/userSlice/selectors"),
+            "@redux/dialogSlice/selectors": path.resolve(__dirname, "./src/redux/dialogSlice/selectors"),
             "@utils/constants": path.resolve(
                 __dirname,
                 "./src/utils/constants"
@@ -26,6 +28,10 @@ export default defineConfig({
             "@utils/api/requests/user": path.resolve(
                 __dirname,
                 "./src/utils/api/requests/user"
+            ),
+            "@utils/api/requests/dialog": path.resolve(
+                __dirname,
+                "./src/utils/api/requests/dialog"
             ),
         },
     },

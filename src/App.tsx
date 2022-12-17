@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { ROUTES } from "@utils/constants";
 import { AuthPage, HomePage, ProfilePage } from "@pages";
 import { userSliceSelector, userIsAuthSelector } from "@redux/userSlice/selectors";
-import { useAuth } from "@utils/api/hooks";
+import { useInitial } from "@utils/api/hooks";
 
 const AuthApp = () => {
     return (
@@ -19,7 +19,7 @@ const AuthApp = () => {
 
 const App = () => {
 
-    useAuth();
+    useInitial();
 
     const isAuth = useSelector(userIsAuthSelector);
 

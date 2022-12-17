@@ -8,27 +8,34 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: space-between;
+
     &__header {
         border-bottom: 1px solid #eaeaea;
         padding-bottom: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         &-info {
             display: flex;
             align-items: center;
         }
     }
+
     &__messages {
         margin-bottom: 50px;
         min-height: 610px;
     }
+
     &__footer {
+        border-top: 1px solid #eaeaea;
+
         &-items {
             margin-top: 11px;
             display: flex;
             align-items: center;
         }
+
         &-send {
             cursor: pointer;
             width: 28px;

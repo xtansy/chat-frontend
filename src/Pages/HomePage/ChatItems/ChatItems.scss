@@ -1,0 +1,13 @@
+.chatItems {
+    border-bottom: 1px solid #eaeaea;
+    width: 100%;
+
+    &__chatItem {
+        padding-bottom: 12px;
+        padding-top: 12px;
+    }
+
+    &__chatItem:not(:last-of-type) {
+        border-bottom: 1px solid #eaeaea;
+    }
+}

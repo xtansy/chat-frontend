@@ -1,12 +1,21 @@
 .chatItem {
-    width: 100%;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+
     &__info {
         margin-left: 10px;
         display: flex;
         flex-direction: column;
     }
+
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.chatItem:hover {
+    background: #e4edfd;
 }
 
 .chatItem__left {

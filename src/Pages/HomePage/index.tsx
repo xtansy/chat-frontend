@@ -2,15 +2,29 @@ import { Input, Typography } from "antd";
 const { Text } = Typography;
 const { Search } = Input;
 import { Link } from "react-router-dom";
-import { ROUTES } from "@utils/constants";
+import { useState, useEffect } from "react";
 
-import { ChatItem, HR, Chat } from "@common";
 import "./HomePage.scss";
+import { ROUTES } from "@utils/constants";
+import { Chat } from "./Chat/Chat";
+import { addMessage, fetchCreateDialog } from "@redux/dialogSlice";
+import { useAppDispatch } from "@store";
+import { ChatItems } from "./ChatItems";
+import { useChat } from "../../utils/socket/hooks";
+import { socket } from "../../utils/socket";
 
 export const HomePage = () => {
-    const onSearch = (value: string) => console.log(value);
+    const dispatch = useAppDispatch();
 
-    const isActive = true;
+    const [activeDialog, setActiveDialog] = useState<null | Dialog>(null);
+
+    const onSearch = (value: string) => {
+        dispatch(fetchCreateDialog({ partnerLogin: value }))
+    };
+
+    const { sendMessage } = useChat();
+    const isActive = !!activeDialog;
+
     return (
         <div className="home">
             <div className="home__left">
@@ -23,36 +37,7 @@ export const HomePage = () => {
                     allowClear
                     onSearch={onSearch}
                 />
-                <div className="home__left-chatItems">
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <HR />
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                    <div className="home__left-chatItems__chatItem">
-                        <ChatItem name={"Андрей"} message={"Изображение"} />
-                    </div>
-                </div>
+                <ChatItems setActiveDialog={setActiveDialog} />
             </div>
             <div className="home__right">
                 {!isActive && (
@@ -62,7 +47,7 @@ export const HomePage = () => {
                         </Text>
                     </div>
                 )}
-                {isActive && <Chat />}
+                {isActive && <Chat dialog={activeDialog} sendMessage={sendMessage} />}
             </div>
         </div>
     );

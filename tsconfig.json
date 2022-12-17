@@ -36,6 +36,9 @@
             "@utils/api/requests/user": [
                 "./src/utils/api/requests/user"
             ],
+            "@utils/api/requests/dialog": [
+                "./src/utils/api/requests/dialog"
+            ],
             "@pages": [
                 "./src/Pages"
             ],
@@ -45,8 +48,14 @@
             "@redux/userSlice": [
                 "./src/redux/userSlice"
             ],
+            "@redux/dialogSlice": [
+                "./src/redux/dialogSlice"
+            ],
             "@redux/userSlice/selectors": [
                 "./src/redux/userSlice/selectors"
+            ],
+            "@redux/dialogSlice/selectors": [
+                "./src/redux/dialogSlice/selectors"
             ]
         }
     },

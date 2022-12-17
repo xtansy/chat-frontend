@@ -2,9 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 import userSlice from "./userSlice";
+import dialogSlice from "./dialogSlice";
 
 const store = configureStore({
-    reducer: { userSlice },
+    reducer: { userSlice, dialogSlice },
 });
 
 //@ts-ignore
