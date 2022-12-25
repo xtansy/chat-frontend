@@ -9,8 +9,7 @@ export const useJoin = () => {
     const dialogs = useSelector(dialogsSelector);
 
     useEffect(() => {
-        dialogs.forEach((item) => {
-            socket.emit("join", { dialogId: item._id });
-        })
+        const Ids = dialogs.map(item => item._id);
+        socket.emit("join", Ids);
     }, [])
 }

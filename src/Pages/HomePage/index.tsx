@@ -16,14 +16,15 @@ import { socket } from "../../utils/socket";
 export const HomePage = () => {
     const dispatch = useAppDispatch();
 
-    const [activeDialog, setActiveDialog] = useState<null | Dialog>(null);
+    const [activeDialogId, setActiveDialogId] = useState<null | Dialog["_id"]>(null);
 
     const onSearch = (value: string) => {
         dispatch(fetchCreateDialog({ partnerLogin: value }))
     };
 
     const { sendMessage } = useChat();
-    const isActive = !!activeDialog;
+
+    const isActive = !!activeDialogId;
 
     return (
         <div className="home">
@@ -37,7 +38,7 @@ export const HomePage = () => {
                     allowClear
                     onSearch={onSearch}
                 />
-                <ChatItems setActiveDialog={setActiveDialog} />
+                <ChatItems setActiveDialogId={setActiveDialogId} />
             </div>
             <div className="home__right">
                 {!isActive && (
@@ -47,7 +48,7 @@ export const HomePage = () => {
                         </Text>
                     </div>
                 )}
-                {isActive && <Chat dialog={activeDialog} sendMessage={sendMessage} />}
+                {isActive && <Chat dialogId={activeDialogId} sendMessage={sendMessage} />}
             </div>
         </div>
     );

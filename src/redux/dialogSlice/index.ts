@@ -46,6 +46,7 @@ const dialogSlice = createSlice({
         addMessage: (state, action: PayloadAction<{ dialogId: Dialog["_id"]; message: string }>) => {
             const payload = action.payload;
             const dialog = state.dialogs.find(item => item._id === payload.dialogId);
+            console.log(dialog);
             dialog?.messages.push(payload.message);
         },
     },

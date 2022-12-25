@@ -9,19 +9,25 @@ const { Text } = Typography;
 import { Input } from "antd";
 const { TextArea } = Input;
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Message } from "./Message/Message";
 import "./Chat.scss";
 import { socket } from "../../../utils/socket";
+import { dialogsSelector } from "@redux/dialogSlice/selectors";
 
 interface ChatProps {
-    dialog: Dialog
+    dialogId: Dialog["_id"]
     sendMessage: (obj: { dialogId: string; message: string }) => void;
 }
 
-export const Chat: React.FC<ChatProps> = ({ dialog, sendMessage }) => {
+export const Chat: React.FC<ChatProps> = ({ dialogId, sendMessage }) => {
 
-    const partner = dialog.partner;
+    const dialogs = useSelector(dialogsSelector);
+
+    const dialog = dialogs.find(item => item._id === dialogId);
+
+    const partner = dialog?.partner;
 
     const [message, setMessage] = useState<undefined | string>(undefined);
 
@@ -33,9 +39,11 @@ export const Chat: React.FC<ChatProps> = ({ dialog, sendMessage }) => {
 
     const onSendMessage = () => {
         if (message) {
-            sendMessage({ dialogId: dialog._id, message });
+            sendMessage({ dialogId, message });
+            setMessage("");
         }
     }
+
 
     return (
         <div className="chat">
@@ -43,7 +51,7 @@ export const Chat: React.FC<ChatProps> = ({ dialog, sendMessage }) => {
                 <div className="chat__header-info">
                     <Avatar size={34} icon={<UserOutlined width={47} />} />
                     <div className="chatItem__info">
-                        <Text strong>{partner.name}</Text>
+                        <Text strong>{partner?.name}</Text>
                     </div>
                 </div>
                 <MoreOutlined
@@ -55,7 +63,7 @@ export const Chat: React.FC<ChatProps> = ({ dialog, sendMessage }) => {
             </div>
             <div className="chat__messages">
                 {
-                    dialog.messages.map((item, i) => {
+                    dialog?.messages.map((item, i) => {
                         return (
                             <Message key={i} isMy={false} text={item} />
                         )

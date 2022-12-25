@@ -56,6 +56,5 @@ interface ServerToClientEvents {
 interface ClientToServerEvents {
     join: (dialogIds: Dialog["_id"][]) => void;
     message: (obj: { dialogId: string; message: string }) => void;
-    message: (obj: { dialogId: string; message: string }) => void;
 }
 
