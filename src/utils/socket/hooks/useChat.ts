@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux"
+
 import { dialogsSelector } from "@redux/dialogSlice/selectors"
 import { socket } from "..";
 import { addMessage } from "@redux/dialogSlice";
@@ -7,6 +8,7 @@ import { useAppDispatch } from "@store";
 
 export const useChat = () => {
     const dispatch = useAppDispatch();
+
     const dialogs = useSelector(dialogsSelector);
 
     const joinUserToDialogs = () => {
@@ -20,16 +22,11 @@ export const useChat = () => {
         }
     }, [dialogs])
 
-    const sendMessage = (obj: { dialogId: string; message: string }) => {
-        socket.emit('message', obj)
-    }
-
     useEffect(() => {
+        console.log("привязка");
         socket.on("message", (obj) => {
             console.log("Пришел эмит от сервера", obj)
             dispatch(addMessage(obj));
         })
     }, [])
-
-    return { sendMessage }
 };

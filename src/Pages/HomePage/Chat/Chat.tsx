@@ -13,21 +13,20 @@ import { useSelector } from "react-redux";
 
 import { Message } from "./Message/Message";
 import "./Chat.scss";
-import { socket } from "../../../utils/socket";
 import { dialogsSelector } from "@redux/dialogSlice/selectors";
-
+import { userSelector } from '@redux/userSlice/selectors';
+import { sendMessage } from "../../../utils/socket/emits/sendMessage";
 interface ChatProps {
     dialogId: Dialog["_id"]
-    sendMessage: (obj: { dialogId: string; message: string }) => void;
 }
 
-export const Chat: React.FC<ChatProps> = ({ dialogId, sendMessage }) => {
-
+export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
+    const user = useSelector(userSelector);
     const dialogs = useSelector(dialogsSelector);
 
     const dialog = dialogs.find(item => item._id === dialogId);
 
-    const partner = dialog?.partner;
+    const partner = dialog?.partner._id === user?._id ? dialog?.owner : dialog?.partner;
 
     const [message, setMessage] = useState<undefined | string>(undefined);
 

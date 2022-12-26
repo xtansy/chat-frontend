@@ -2,16 +2,14 @@ import { Input, Typography } from "antd";
 const { Text } = Typography;
 const { Search } = Input;
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import "./HomePage.scss";
 import { ROUTES } from "@utils/constants";
 import { Chat } from "./Chat/Chat";
-import { addMessage, fetchCreateDialog } from "@redux/dialogSlice";
+import { fetchCreateDialog } from "@redux/dialogSlice";
 import { useAppDispatch } from "@store";
 import { ChatItems } from "./ChatItems";
-import { useChat } from "../../utils/socket/hooks";
-import { socket } from "../../utils/socket";
 
 export const HomePage = () => {
     const dispatch = useAppDispatch();
@@ -21,8 +19,6 @@ export const HomePage = () => {
     const onSearch = (value: string) => {
         dispatch(fetchCreateDialog({ partnerLogin: value }))
     };
-
-    const { sendMessage } = useChat();
 
     const isActive = !!activeDialogId;
 
@@ -48,7 +44,7 @@ export const HomePage = () => {
                         </Text>
                     </div>
                 )}
-                {isActive && <Chat dialogId={activeDialogId} sendMessage={sendMessage} />}
+                {isActive && <Chat dialogId={activeDialogId} />}
             </div>
         </div>
     );
