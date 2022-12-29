@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { dialogsSelector } from "@redux/dialogSlice/selectors"
 import { socket } from "..";
 import { addMessage } from "@redux/dialogSlice";
+import { fetchDialogs } from "@redux/dialogSlice";
 import { useAppDispatch } from "@store";
 
 export const useChat = () => {
@@ -23,10 +24,12 @@ export const useChat = () => {
     }, [dialogs])
 
     useEffect(() => {
-        console.log("привязка");
         socket.on("message", (obj) => {
-            console.log("Пришел эмит от сервера", obj)
             dispatch(addMessage(obj));
+        })
+        socket.on("createDialog", (obj) => {
+            console.log(obj.text);
+            dispatch(fetchDialogs());
         })
     }, [])
 };

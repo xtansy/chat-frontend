@@ -50,7 +50,7 @@ interface createDialogProps {
 
 interface ServerToClientEvents {
     message: (obj: { dialogId: string; message: string }) => void;
-    test: (test: string) => void;
+    createDialog: (obj: { text: string }) => void;
 }
 
 interface ClientToServerEvents {

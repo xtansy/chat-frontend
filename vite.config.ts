@@ -33,6 +33,10 @@ export default defineConfig({
                 __dirname,
                 "./src/utils/api/requests/dialog"
             ),
+            "@utils/socket/emits": path.resolve(
+                __dirname,
+                "./src/utils/socket/emits"
+            ),
         },
     },
 });

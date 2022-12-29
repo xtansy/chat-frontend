@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { createDialog, getDialogs } from "@utils/api/requests/dialog";
 
-
-
-
 interface DialogSlice {
     isLoading: boolean;
     dialogs: Dialog[];
@@ -46,7 +43,6 @@ const dialogSlice = createSlice({
         addMessage: (state, action: PayloadAction<{ dialogId: Dialog["_id"]; message: string }>) => {
             const payload = action.payload;
             const dialog = state.dialogs.find(item => item._id === payload.dialogId);
-            console.log(dialog);
             dialog?.messages.push(payload.message);
         },
     },
@@ -61,7 +57,6 @@ const dialogSlice = createSlice({
         builder.addCase(fetchCreateDialog.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = null;
-            state.dialogs.push(action.payload.data);
         })
         //////////////////////////////////////
         builder.addCase(fetchDialogs.pending, (state) => {

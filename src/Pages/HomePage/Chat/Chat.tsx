@@ -11,11 +11,12 @@ const { TextArea } = Input;
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Message } from "./Message/Message";
 import "./Chat.scss";
+import { Message } from "./Message/Message";
 import { dialogsSelector } from "@redux/dialogSlice/selectors";
 import { userSelector } from '@redux/userSlice/selectors';
-import { sendMessage } from "../../../utils/socket/emits/sendMessage";
+import { sendMessage } from "@utils/socket/emits";
+
 interface ChatProps {
     dialogId: Dialog["_id"]
 }

@@ -56,6 +56,9 @@
             ],
             "@redux/dialogSlice/selectors": [
                 "./src/redux/dialogSlice/selectors"
+            ],
+            "@utils/socket/emits": [
+                "./src/utils/socket/emits"
             ]
         }
     },
