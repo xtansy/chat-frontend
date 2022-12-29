@@ -40,7 +40,7 @@ const dialogSlice = createSlice({
     name: "dialogSlice",
     initialState,
     reducers: {
-        addMessage: (state, action: PayloadAction<{ dialogId: Dialog["_id"]; message: string }>) => {
+        addMessage: (state, action: PayloadAction<{ dialogId: Dialog["_id"]; message: Message }>) => {
             const payload = action.payload;
             const dialog = state.dialogs.find(item => item._id === payload.dialogId);
             dialog?.messages.push(payload.message);

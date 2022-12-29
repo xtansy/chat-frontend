@@ -1,14 +1,17 @@
 import "./Message.scss";
 import classnames from "classnames";
-import { Space, Typography } from "antd";
+import { Typography } from "antd";
 
-const { Text, Link } = Typography;
+const { Text } = Typography;
+import { formatDateMessage } from "@utils/helpers";
+
 interface MessageProps {
     isMy: boolean;
     text: string;
+    date: string;
 }
 
-export const Message: React.FC<MessageProps> = ({ isMy, text }) => {
+export const Message: React.FC<MessageProps> = ({ isMy, text, date }) => {
     const styles = classnames("message", {
         message_my: isMy,
     });
@@ -23,7 +26,7 @@ export const Message: React.FC<MessageProps> = ({ isMy, text }) => {
                     }}
                     type="secondary"
                 >
-                    11:56
+                    {formatDateMessage(date)}
                 </Text>
             </div>
         </div>

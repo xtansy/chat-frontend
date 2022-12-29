@@ -25,6 +25,8 @@
     &__messages {
         margin-bottom: 50px;
         min-height: 610px;
+        display: flex;
+        flex-direction: column;
     }
 
     &__footer {

@@ -1,18 +1,21 @@
 .message {
-    margin-top: 50px;
     max-width: 402px;
+    margin-top: 50px;
+    min-width: 90px;
+    width: fit-content;
     padding: 11px;
     border-radius: 10px;
     background: #eff0f1;
-    min-width: 70px;
+    position: relative;
+
     &__date {
+        position: absolute;
         right: 11px;
         bottom: 11px;
     }
+
     &_my {
-        min-width: 70px;
-        max-width: 402px;
         background: #e4edfd;
-        right: 20px;
+        align-self: flex-end;
     }
 }

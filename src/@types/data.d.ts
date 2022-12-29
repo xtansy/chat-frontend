@@ -36,10 +36,16 @@ interface signInResult extends Response<UserResponse> {
     accessToken: string;
 }
 
+interface Message {
+    text: string;
+    userId: string;
+    _id: string;
+    createdAt: string;
+}
 interface Dialog {
     owner: User;
     partner: User;
-    messages: string[];
+    messages: Message[];
     lastMessage: string;
     _id: string;
 }
@@ -49,12 +55,12 @@ interface createDialogProps {
 
 
 interface ServerToClientEvents {
-    message: (obj: { dialogId: string; message: string }) => void;
+    message: (obj: { dialogId: string; message: Message }) => void;
     createDialog: (obj: { text: string }) => void;
 }
 
 interface ClientToServerEvents {
     join: (dialogIds: Dialog["_id"][]) => void;
-    message: (obj: { dialogId: string; message: string }) => void;
+    message: (obj: { dialogId: string; text: string, userId: string }) => void;
 }
 

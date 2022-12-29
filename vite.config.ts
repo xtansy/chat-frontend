@@ -37,6 +37,10 @@ export default defineConfig({
                 __dirname,
                 "./src/utils/socket/emits"
             ),
+            "@utils/helpers": path.resolve(
+                __dirname,
+                "./src/utils/helpers"
+            ),
         },
     },
 });

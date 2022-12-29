@@ -38,11 +38,12 @@ export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
     };
 
     const onSendMessage = () => {
-        if (message) {
-            sendMessage({ dialogId, message });
+        if (message && user) {
+            sendMessage({ dialogId, text: message, userId: user._id });
             setMessage("");
         }
     }
+
 
 
     return (
@@ -64,8 +65,9 @@ export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
             <div className="chat__messages">
                 {
                     dialog?.messages.map((item, i) => {
+                        const isMy = item.userId === user?._id;
                         return (
-                            <Message key={i} isMy={false} text={item} />
+                            <Message key={i} isMy={isMy} text={item.text} date={item.createdAt} />
                         )
                     })
                 }
