@@ -28,9 +28,10 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId }) => {
             {
                 myDialogs.map(item => {
                     const partner = item.partner;
+                    const lastMessage = item.messages.at(-1);
                     return (
                         <div onClick={() => setActiveDialogId(item._id)} key={item._id} className="chatItems__chatItem">
-                            <ChatItem name={partner.name} message={"last message"} />
+                            <ChatItem name={partner.name} message={lastMessage} />
                         </div>
                     )
                 })

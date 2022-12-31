@@ -62,6 +62,9 @@
             ],
             "@utils/helpers": [
                 "./src/utils/helpers"
+            ],
+            "@utils/hooks": [
+                "./src/utils/hooks"
             ]
         }
     },

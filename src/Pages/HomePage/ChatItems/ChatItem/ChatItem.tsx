@@ -4,24 +4,27 @@ const { Text } = Typography;
 import "./ChatItem.scss";
 
 import { HR } from "@common";
+import { formatDateMessage } from "@utils/helpers";
 
 interface ChatItemProps {
     name: string;
-    message: string;
+    message: Message | undefined;
 }
 
 export const ChatItem: React.FC<ChatItemProps> = ({ name, message }) => {
+
+    const formatDate = message ? formatDateMessage(message.createdAt) : null;
     return (
         <div className="chatItem">
             <div className="chatItem__left">
                 <Avatar size={47} icon={<UserOutlined width={47} />} />
                 <div className="chatItem__info">
                     <Text strong>{name}</Text>
-                    <Text type="secondary">{message}</Text>
+                    <Text type="secondary">{message?.text}</Text>
                 </div>
             </div>
             <div className="chatItem__right">
-                <Text type="secondary">10:49</Text>
+                <Text type="secondary">{formatDate}</Text>
             </div>
         </div>
     );

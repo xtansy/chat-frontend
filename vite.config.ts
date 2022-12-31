@@ -41,6 +41,10 @@ export default defineConfig({
                 __dirname,
                 "./src/utils/helpers"
             ),
+            "@utils/hooks": path.resolve(
+                __dirname,
+                "./src/utils/hooks"
+            ),
         },
     },
 });

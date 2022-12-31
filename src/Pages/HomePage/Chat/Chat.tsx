@@ -8,7 +8,7 @@ import {
 const { Text } = Typography;
 import { Input } from "antd";
 const { TextArea } = Input;
-import { useState } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 
 import "./Chat.scss";
@@ -16,6 +16,7 @@ import { Message } from "./Message/Message";
 import { dialogsSelector } from "@redux/dialogSlice/selectors";
 import { userSelector } from '@redux/userSlice/selectors';
 import { sendMessage } from "@utils/socket/emits";
+import { useScrollbar, useAutoScroll } from "@utils/hooks";
 
 interface ChatProps {
     dialogId: Dialog["_id"]
@@ -24,6 +25,12 @@ interface ChatProps {
 export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
     const user = useSelector(userSelector);
     const dialogs = useSelector(dialogsSelector);
+    const messagesLength = dialogs.find(dialog => dialog._id === dialogId)?.messages.length;
+
+    const messagesRef = useRef<HTMLDivElement>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
+    useScrollbar({ node: messagesRef, visible: true });
+    useAutoScroll({ node: scrollRef, length: messagesLength });
 
     const dialog = dialogs.find(item => item._id === dialogId);
 
@@ -44,8 +51,6 @@ export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
         }
     }
 
-
-
     return (
         <div className="chat">
             <div className="chat__header">
@@ -62,15 +67,17 @@ export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
                     }}
                 />
             </div>
-            <div className="chat__messages">
-                {
-                    dialog?.messages.map((item, i) => {
-                        const isMy = item.userId === user?._id;
-                        return (
-                            <Message key={i} isMy={isMy} text={item.text} date={item.createdAt} />
-                        )
-                    })
-                }
+            <div ref={messagesRef}>
+                <div ref={scrollRef} className="chat__messages">
+                    {
+                        dialog?.messages.map((item, i) => {
+                            const isMy = item.userId === user?._id;
+                            return (
+                                <Message key={i} isMy={isMy} text={item.text} date={item.createdAt} />
+                            )
+                        })
+                    }
+                </div>
             </div>
             <div className="chat__footer">
                 <div className="chat__footer-items">
