@@ -27,9 +27,16 @@
         flex-direction: column;
         align-items: center;
 
-        &-title {
-            margin-left: 234px;
-            margin-bottom: 23px;
+        &-menu {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+
+            &__icon {
+                cursor: pointer;
+                color: grey;
+            }
         }
 
         &-input {

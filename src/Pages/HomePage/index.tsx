@@ -1,4 +1,5 @@
 import { Input, Typography } from "antd";
+import { FormOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 const { Search } = Input;
 import { Link } from "react-router-dom";
@@ -25,12 +26,16 @@ export const HomePage = () => {
     return (
         <div className="home">
             <div className="home__left">
-                <Text className="home__left-title" type="secondary">
-                    <Link to={ROUTES.PROFILE}>Профиль</Link>
-                </Text>
+                <div className="home__left-menu">
+                    <Text className="home__left-menu__title" type="secondary">
+                        <Link to={ROUTES.PROFILE}>Профиль</Link>
+                    </Text>
+                    <FormOutlined className="home__left-menu__icon" />
+                </div>
+
                 <Search
                     className="home__left-input"
-                    placeholder="input search text"
+                    placeholder="Поиск среди контактов"
                     allowClear
                     onSearch={onSearch}
                 />
