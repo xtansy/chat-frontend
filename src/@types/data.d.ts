@@ -50,7 +50,7 @@ interface Dialog {
     _id: string;
 }
 interface createDialogProps {
-    partnerLogin: string;
+    partnerLogin: User["login"];
 }
 
 

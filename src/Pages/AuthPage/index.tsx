@@ -4,20 +4,30 @@ import { notification } from 'antd';
 
 import { SignUp } from "./SignUp/SignUp";
 import { SignIn } from "./SignIn/SignIn";
-import { succesSignUp, failedSignUp } from "@utils/constants";
+import { successNotif, failedNotif } from "@utils/constants";
 import "./Auth.scss";
 
 export const AuthPage = () => {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);
+
     const [api, contextHolder] = notification.useNotification();
 
     const onSuccesSignUp = () => {
-        api.open(succesSignUp);
+        const notifInfo = {
+            message: 'Вы успешно зарегистрировались!',
+            description:
+                'Войдите в аккаунт, используя свои данные!',
+        }
+        api.open(successNotif(notifInfo));
         setIsSignUp(false);
     };
     const onFailedSignUp = (errorMessage: string) => {
-        const obj = failedSignUp(errorMessage)
-        api.open(obj);
+        const notifInfo = {
+            message: 'Произошла ошибка!',
+            description:
+                errorMessage,
+        }
+        api.open(failedNotif(notifInfo));
     };
 
     const buttonText = isSignUp ? "Войти" : "Нет Аккаутна?";

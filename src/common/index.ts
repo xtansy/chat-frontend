@@ -1,1 +1,1 @@
-export * from "./HR/HR";
+export * from "./Modals";

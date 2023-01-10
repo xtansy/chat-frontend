@@ -8,8 +8,9 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface ChatItemsProps {
     setActiveDialogId: Dispatch<SetStateAction<Dialog["_id"] | null>>;
+    term: string;
 }
-export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId }) => {
+export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term }) => {
 
     const dialogs = useSelector(dialogsSelector);
 
@@ -23,10 +24,12 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId }) => {
         }
     })
 
+    const filteredDialogs = myDialogs.filter(dialog => dialog.partner.name.includes(term));
+
     return (
         <div className="chatItems">
             {
-                myDialogs.map(item => {
+                filteredDialogs.map(item => {
                     const partner = item.partner;
                     const lastMessage = item.messages.at(-1);
                     return (
