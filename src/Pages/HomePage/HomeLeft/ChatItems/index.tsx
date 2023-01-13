@@ -5,6 +5,8 @@ import { userSelector } from '@redux/userSlice/selectors';
 import { ChatItem } from './ChatItem/ChatItem';
 import "./ChatItems.scss";
 import { Dispatch, SetStateAction } from 'react';
+import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
+import { PartnerNotFound } from '../../../../common/Notifications';
 
 interface ChatItemsProps {
     setActiveDialogId: Dispatch<SetStateAction<Dialog["_id"] | null>>;
@@ -13,6 +15,7 @@ interface ChatItemsProps {
 export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term }) => {
 
     const dialogs = useSelector(dialogsSelector);
+    const dialogsLoading = useSelector(dialogsLoadingSelector);
 
     const user = useSelector(userSelector);
 
@@ -26,8 +29,12 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term })
 
     const filteredDialogs = myDialogs.filter(dialog => dialog.partner.name.includes(term));
 
+    if (dialogsLoading) return <h1>ЗАГРУЗКА ДИАЛОГОВ...</h1>
+
+
     return (
         <div className="chatItems">
+            <PartnerNotFound />
             {
                 filteredDialogs.map(item => {
                     const partner = item.partner;

@@ -21,6 +21,7 @@ interface User {
     surname: string;
     email: string;
     role: Role;
+    avatar: string;
 }
 
 interface Response<T> {

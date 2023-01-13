@@ -67,8 +67,8 @@ const dialogSlice = createSlice({
             state.isError = action.payload.message;
         })
         builder.addCase(fetchDialogs.fulfilled, (state, action) => {
-            state.isLoading = false;
             state.isError = null;
+            state.isLoading = false;
             state.dialogs = action.payload.data;
         })
     }
