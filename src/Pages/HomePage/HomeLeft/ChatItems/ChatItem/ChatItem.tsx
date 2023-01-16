@@ -3,7 +3,6 @@ import { UserOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 import "./ChatItem.scss";
 
-import { HR } from "@common";
 import { formatDateMessage } from "@utils/helpers";
 
 interface ChatItemProps {

@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { notification } from 'antd';
+import { useAppDispatch } from '@store';
 
 import { dialogsErrorSelector } from '@redux/dialogSlice/selectors';
+import { clearDialogsError } from '@redux/dialogSlice';
 import { failedNotif } from "@utils/constants";
 
 export const PartnerNotFound = () => {
-    const [api, contextHolder] = notification.useNotification();
+
+    const dispatch = useAppDispatch();
 
     const dialogError = useSelector(dialogsErrorSelector);
+
+    const [api, contextHolder] = notification.useNotification();
 
     useEffect(() => {
         if (dialogError) {
@@ -17,7 +22,9 @@ export const PartnerNotFound = () => {
                 description: dialogError
             }
             api.open(failedNotif(notifInfo))
-            return;
+        }
+        return () => {
+            dispatch(clearDialogsError());
         }
     }, [dialogError])
 

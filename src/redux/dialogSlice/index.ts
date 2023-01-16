@@ -45,6 +45,10 @@ const dialogSlice = createSlice({
             const dialog = state.dialogs.find(item => item._id === payload.dialogId);
             dialog?.messages.push(payload.message);
         },
+        clearDialogsError: (state) => {
+            console.log("обнулил")
+            state.isError = null;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCreateDialog.pending, (state) => {
@@ -75,5 +79,5 @@ const dialogSlice = createSlice({
 });
 
 const { actions, reducer } = dialogSlice;
-export const { addMessage } = actions;
+export const { addMessage, clearDialogsError } = actions;
 export default reducer;

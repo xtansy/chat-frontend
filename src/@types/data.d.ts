@@ -65,3 +65,11 @@ interface ClientToServerEvents {
     message: (obj: { dialogId: string; text: string, userId: string }) => void;
 }
 
+
+
+// modals
+interface ModalsProps<T> {
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<T>>;
+}
+

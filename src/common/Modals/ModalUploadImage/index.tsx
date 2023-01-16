@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Button, Modal, UploadFile, message, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
@@ -7,12 +7,8 @@ import { fetchGetMe } from '@redux/userSlice';
 import { uploadAvatar } from "@utils/api/requests/user";
 import { uploadAvatarProps } from '@utils/constants';
 
-interface ModalUploadImageProps {
-    open: boolean;
-    setOpen: Dispatch<SetStateAction<boolean>>;
-}
 
-export const ModalUploadImage: React.FC<ModalUploadImageProps> = ({ open, setOpen }) => {
+export const ModalUploadImage: React.FC<ModalsProps<boolean>> = ({ open, setOpen }) => {
 
     const dispatch = useAppDispatch();
 
