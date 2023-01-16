@@ -1,8 +1,9 @@
 import "./Message.scss";
+
 import classnames from "classnames";
 import { Typography } from "antd";
-
 const { Text } = Typography;
+
 import { formatDateMessage } from "@utils/helpers";
 
 interface MessageProps {
@@ -12,6 +13,7 @@ interface MessageProps {
 }
 
 export const Message: React.FC<MessageProps> = ({ isMy, text, date }) => {
+
     const styles = classnames("message", {
         message_my: isMy,
     });

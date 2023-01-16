@@ -7,7 +7,7 @@ import { dialogsErrorSelector } from '@redux/dialogSlice/selectors';
 import { clearDialogsError } from '@redux/dialogSlice';
 import { failedNotif } from "@utils/constants";
 
-export const PartnerNotFound = () => {
+export const PartnerNotFoundNotif = () => {
 
     const dispatch = useAppDispatch();
 

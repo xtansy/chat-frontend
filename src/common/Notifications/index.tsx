@@ -1,1 +1,1 @@
-export * from "./PartnerNotFound";
+export * from "./PartnerNotFoundNotif";

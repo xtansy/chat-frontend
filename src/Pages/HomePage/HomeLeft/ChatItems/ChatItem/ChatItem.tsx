@@ -6,17 +6,18 @@ import "./ChatItem.scss";
 import { formatDateMessage } from "@utils/helpers";
 
 interface ChatItemProps {
-    name: string;
+    name: User["name"];
     message: Message | undefined;
+    avatar: User["avatar"]
 }
 
-export const ChatItem: React.FC<ChatItemProps> = ({ name, message }) => {
+export const ChatItem: React.FC<ChatItemProps> = ({ name, message, avatar }) => {
 
     const formatDate = message ? formatDateMessage(message.createdAt) : null;
     return (
         <div className="chatItem">
             <div className="chatItem__left">
-                <Avatar size={47} icon={<UserOutlined width={47} />} />
+                <Avatar src={avatar} size={47} icon={<UserOutlined width={47} />} />
                 <div className="chatItem__info">
                     <Text strong>{name}</Text>
                     <Text type="secondary">{message?.text}</Text>

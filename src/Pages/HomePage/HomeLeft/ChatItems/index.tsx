@@ -6,7 +6,7 @@ import { ChatItem } from './ChatItem/ChatItem';
 import "./ChatItems.scss";
 import { Dispatch, SetStateAction } from 'react';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
-import { PartnerNotFound } from '../../../../common/Notifications';
+import { PartnerNotFoundNotif } from '@common';
 
 interface ChatItemsProps {
     setActiveDialogId: Dispatch<SetStateAction<Dialog["_id"] | null>>;
@@ -34,14 +34,14 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term })
 
     return (
         <div className="chatItems">
-            <PartnerNotFound />
+            <PartnerNotFoundNotif />
             {
                 filteredDialogs.map(item => {
                     const partner = item.partner;
                     const lastMessage = item.messages.at(-1);
                     return (
                         <div onClick={() => setActiveDialogId(item._id)} key={item._id} className="chatItems__chatItem">
-                            <ChatItem name={partner.name} message={lastMessage} />
+                            <ChatItem name={partner.name} message={lastMessage} avatar={partner.avatar} />
                         </div>
                     )
                 })

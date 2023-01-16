@@ -46,7 +46,6 @@ const dialogSlice = createSlice({
             dialog?.messages.push(payload.message);
         },
         clearDialogsError: (state) => {
-            console.log("обнулил")
             state.isError = null;
         }
     },
