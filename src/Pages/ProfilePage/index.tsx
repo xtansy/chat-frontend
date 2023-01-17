@@ -41,15 +41,17 @@ export const ProfilePage = () => {
 
     return (
         <>
+
             <div className="arrowWrapper">
-                <ArrowLeftOutlined
-                    onClick={onClickArrow}
-                    className="arrowWrapper__arrow"
-                    style={{
-                        fontSize: 40,
-                    }}
-                />
+                <div className="arrowWrapper__backBlock">
+                    <ArrowLeftOutlined
+                        onClick={onClickArrow}
+                        className="arrowWrapper__backBlock-icon"
+                    />
+                </div>
             </div>
+
+
             <div className="profileWrapper">
                 <div className="profile">
                     <div className="profile__header">

@@ -36,26 +36,15 @@ export const ChatFooter: React.FC<ChatFooterProps> = ({ dialogId }) => {
     return (
         <div className="chat__footer">
             <div className="chat__footer-items">
-                <PaperClipOutlined
-                    style={{
-                        fontSize: "32px",
-                        cursor: "pointer",
-                        marginRight: "10px",
-                    }}
-                />
+                <PaperClipOutlined className="chat__footer-items__paper" />
                 <TextArea
                     value={message}
                     placeholder="Сообщение"
                     allowClear
                     onChange={onChange}
                 />
-                <div onClick={onSendMessage} className="chat__footer-send">
-                    <ArrowRightOutlined
-                        style={{
-                            fontSize: "28px",
-                            color: "white",
-                        }}
-                    />
+                <div onClick={onSendMessage} className="chat__footer-items__send">
+                    <ArrowRightOutlined className="chat__footer-items__send-icon" />
                 </div>
             </div>
         </div>

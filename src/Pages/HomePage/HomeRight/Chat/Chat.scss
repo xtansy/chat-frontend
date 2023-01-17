@@ -20,6 +20,56 @@
             display: flex;
             align-items: center;
         }
+
+        &-icon {
+            font-size: 23px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 25px;
+            height: 25px;
+            border-radius: 70%;
+        }
+
+        &-icon:hover {
+            color: blue;
+            background: #F5F5F5;
+        }
+
+        &-icon:active {
+            background: rgba(0, 0, 255, 0.24);
+        }
+
+        &-popover {
+            &__item {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+                margin-bottom: 10px;
+                border-radius: 20px;
+                padding: 3px;
+
+                &-icon {
+                    font-size: 20px;
+                }
+
+                &-text {
+                    font-weight: 500;
+
+                    &_link {
+                        color: #3369f3;
+                    }
+                }
+
+                &_linkTo:hover {
+                    background: #3369f341;
+                }
+
+                &_deleteUser:hover {
+                    background: rgba(204, 22, 22, 0.199);
+                }
+            }
+        }
     }
 
     &__messages {
@@ -38,16 +88,30 @@
             margin-top: 11px;
             display: flex;
             align-items: center;
+
+            &__paper {
+                font-size: 43px;
+                cursor: pointer;
+                margin-right: 10px;
+                color: #3369f3d5;
+            }
+
+            &__send {
+                cursor: pointer;
+                width: 28px;
+                height: 28px;
+                padding: 9px;
+                border-radius: 100%;
+                background: #3369f3;
+                margin-left: 10px;
+
+                &-icon {
+                    font-size: 28px;
+                    color: white;
+                }
+            }
         }
 
-        &-send {
-            cursor: pointer;
-            width: 28px;
-            height: 28px;
-            padding: 9px;
-            border-radius: 100%;
-            background: #3369f3;
-            margin-left: 10px;
-        }
+
     }
 }
