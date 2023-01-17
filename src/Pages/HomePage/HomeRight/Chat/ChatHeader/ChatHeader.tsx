@@ -9,17 +9,30 @@ const { Text } = Typography;
 
 import { useState } from "react";
 
+import { useAppDispatch } from "@store";
+import { fetchDialogs } from "@redux/dialogSlice";
+import { deleteDialog } from "@utils/api/requests/dialog";
+
 interface ChatHeaderProps {
     name: User["name"];
     avatar: User["avatar"];
+    dialogId: Dialog["_id"];
 }
 
-export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name }) => {
+export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId }) => {
+
+    const dispatch = useAppDispatch();
+
     const [open, setOpen] = useState(false);
 
     const onClickOpenPopover = (newOpen: boolean) => {
         setOpen(newOpen);
     };
+
+    const onClickDeleteDialog = async () => {
+        await deleteDialog(dialogId);
+        dispatch(fetchDialogs());
+    }
 
     const PopoverContent = () => {
         return (
@@ -30,7 +43,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name }) => {
                         Перейти на страницу
                     </Text>
                 </div>
-                <div className="chat__header-popover__item chat__header-popover__item_deleteUser">
+                <div onClick={onClickDeleteDialog} className="chat__header-popover__item chat__header-popover__item_deleteUser">
                     <CloseCircleTwoTone twoToneColor="#eb2f96" className="chat__header-popover__item-icon" />
                     <Text type="danger" className="chat__header-popover__item-text">
                         Удалить пользователя
@@ -50,7 +63,6 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name }) => {
             <Popover
                 placement="bottomRight"
                 content={<PopoverContent />}
-                title="Title"
                 trigger="click"
                 open={open}
                 onOpenChange={onClickOpenPopover}

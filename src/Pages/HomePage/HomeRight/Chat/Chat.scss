@@ -43,11 +43,10 @@
             &__item {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
                 cursor: pointer;
                 margin-bottom: 10px;
                 border-radius: 20px;
-                padding: 3px;
+                padding: 5px;
 
                 &-icon {
                     font-size: 20px;
@@ -55,8 +54,10 @@
 
                 &-text {
                     font-weight: 500;
+                    margin-left: 5px;
 
                     &_link {
+                        margin-left: 7px;
                         color: #3369f3;
                     }
                 }

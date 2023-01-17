@@ -1,12 +1,13 @@
-import { Button, Modal } from 'antd';
-import { useEffect, useState } from 'react';
+import { Button, Modal, message } from 'antd';
+import { useState } from 'react';
 import { Input } from 'antd';
 import { useSelector } from 'react-redux';
 
 import "./ModalAddContact.scss";
 import { useAppDispatch } from '@store';
-import { fetchCreateDialog } from '@redux/dialogSlice';
+import { fetchDialogs } from '@redux/dialogSlice';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
+import { createDialog } from '@utils/api/requests/dialog';
 
 export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen }) => {
 
@@ -16,19 +17,23 @@ export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen 
 
     const [login, setLogin] = useState<User["login"] | undefined>(undefined);
 
-    const handleOk = () => {
+    const handleOk = async () => {
         if (login) {
-            dispatch(fetchCreateDialog({ partnerLogin: login }))
-            setLogin(undefined);
+            createDialog({ partnerLogin: login })
+                .then(res => {
+                    dispatch(fetchDialogs());
+                    message.success('Диалог создан!');
+                })
+                .catch(({ response }) => {
+                    const errorMessage = response.data.message;
+                    message.error(errorMessage);
+                })
+                .finally(() => {
+                    setOpen(false);
+                    setLogin(undefined);
+                })
         }
     };
-
-    useEffect(() => {
-        if (!isDialogLoading) {
-            setOpen(false);
-        }
-    }, [isDialogLoading])
-
 
     const handleCancel = () => {
         setOpen(false);
@@ -37,9 +42,7 @@ export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen 
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const value = e.target.value;
-        if (value) {
-            setLogin(value);
-        }
+        setLogin(value);
     };
 
     return (

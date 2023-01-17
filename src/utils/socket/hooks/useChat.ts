@@ -31,5 +31,9 @@ export const useChat = () => {
             console.log(obj.text);
             dispatch(fetchDialogs());
         })
+        socket.on("deleteDialog", (obj) => {
+            console.log(obj.text);
+            dispatch(fetchDialogs());
+        })
     }, [])
 };
