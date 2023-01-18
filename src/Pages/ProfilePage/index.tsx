@@ -1,6 +1,6 @@
 import "./ProfilePage.scss";
 
-import { UserOutlined, ArrowLeftOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { Typography } from "antd";
 const { Text, Link, Title } = Typography;
@@ -11,25 +11,24 @@ import { useNavigate } from "react-router-dom";
 
 import { logout } from "@redux/userSlice";
 import { userSelector } from "@redux/userSlice/selectors";
-import { ROUTES } from "@utils/constants";
 import { useAppDispatch } from "@store";
-import { ModalUploadImage } from "@common";
+import { ModalUploadImage, ArrowToHome } from "@common";
 import { Field } from "./Field/Field";
+import { ROUTES } from "@utils/constants";
 
 export const ProfilePage = () => {
 
     const dispatch = useAppDispatch();
-
     const navigate = useNavigate();
 
     const user = useSelector(userSelector);
 
-    const onClickArrow = () => {
-        navigate(ROUTES.HOME);
-    }
-
     const onClickLogout = () => {
         dispatch(logout());
+    }
+
+    const onClickChangeInfo = () => {
+        navigate(ROUTES.CHANGE_INFO);
     }
 
     // upload modal visible
@@ -42,15 +41,7 @@ export const ProfilePage = () => {
     return (
         <>
 
-            <div className="arrowWrapper">
-                <div className="arrowWrapper__backBlock">
-                    <ArrowLeftOutlined
-                        onClick={onClickArrow}
-                        className="arrowWrapper__backBlock-icon"
-                    />
-                </div>
-            </div>
-
+            <ArrowToHome />
 
             <div className="profileWrapper">
                 <div className="profile">
@@ -66,7 +57,7 @@ export const ProfilePage = () => {
                         <Field Component={Text} name={"Фамилия"} value={"surname"} />
                     </div>
                     <div className="profile__settings">
-                        <Field Component={Link} name={"Изменить данные"} />
+                        <Field Component={Link} onClick={onClickChangeInfo} name={"Изменить данные"} />
                         <Field Component={Link} name={"Изменить пароль"} />
                         <Field onClick={onClickLogout} Component={Link} name={"Выйти"} nameType="danger" />
                     </div>

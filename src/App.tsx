@@ -1,11 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 import { ROUTES } from "@utils/constants";
-import { AuthPage, HomePage, ProfilePage } from "@pages";
-import { userSliceSelector, userIsAuthSelector } from "@redux/userSlice/selectors";
+import { AuthPage, HomePage, ProfilePage, ChangeInfoPage } from "@pages";
+import { userIsAuthSelector } from "@redux/userSlice/selectors";
 import { useInitial } from "@utils/api/hooks";
 
 const AuthApp = () => {
@@ -28,8 +26,9 @@ const App = () => {
             {!isAuth && <AuthApp />}
             {isAuth && (
                 <Routes>
-                    <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
                     <Route path={"*"} element={<HomePage />} />
+                    <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+                    <Route path={ROUTES.CHANGE_INFO} element={<ChangeInfoPage />} />
                 </Routes>
             )}
         </>

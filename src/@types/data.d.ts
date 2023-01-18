@@ -14,18 +14,24 @@ interface Role {
     _id: string;
     name: string;
 }
-interface User {
-    _id: string;
+
+interface UserInfo {
     login: string;
     name: string;
     surname: string;
     email: string;
+}
+interface User extends UserInfo {
+    _id: string;
     role: Role;
     avatar: string;
 }
 
-interface Response<T> {
+
+interface SimpleResponse {
     message: string;
+}
+interface Response<T> extends SimpleResponse {
     data: T;
 }
 

@@ -1,0 +1,22 @@
+.profile {
+
+
+    &__info {
+        &_editable {
+            margin-top: 105px;
+        }
+    }
+
+    &__settings {
+        &_editable {
+            &__button {
+                min-width: 280px;
+                min-height: 37px;
+            }
+        }
+
+        &_editable>*:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+}
