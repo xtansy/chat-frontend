@@ -1,30 +1,34 @@
-import "./ChangeInfoPage.scss";
+import "./ChangePasswordPage.scss";
 
 import { useState } from "react";
+import { Avatar, Button, Form, message } from "antd";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { Avatar, Button, message, Form } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { useAppDispatch } from "@store";
+
 
 import { ArrowToHome, ModalUploadImage } from "@common";
 import { userSelector, userLoadingSelector } from "@redux/userSlice/selectors";
-import { FieldEditable } from "./FieldEditable/FieldEditable";
-import { changeUserInfo } from "@utils/api/requests/user";
-import { useAppDispatch } from "@store";
+import { passwordRules, confirmPasswordRules } from "@utils/constants";
+import { changeUserPassword } from "@utils/api/requests/user";
 import { fetchGetMe } from "@redux/userSlice";
-import {
-    loginRules,
-    infoRules,
-    emailRules,
-} from "@utils/constants";
 
-export const ChangeInfoPage = () => {
+import { FieldPassword } from "./FieldPassword/FieldPassword";
+
+interface PasswordFields extends ChangePassword {
+    newPasswordConfirmed: string;
+}
+
+
+export const ChangePasswordPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const user = useSelector(userSelector);
     const userLoading = useSelector(userLoadingSelector);
+
+
 
     // avatar modal visible
     const [open, setOpen] = useState(false);
@@ -41,15 +45,8 @@ export const ChangeInfoPage = () => {
 
     if (!user) return null;
 
-    const initialValues: UserInfo = {
-        login: user.login,
-        email: user.email,
-        name: user.name,
-        surname: user.surname
-    };
-
-    const onFinish = (values: UserInfo) => {
-        changeUserInfo(values)
+    const onFinish = (values: PasswordFields) => {
+        changeUserPassword(values)
             .then(res => {
                 dispatch(fetchGetMe());
                 message.success(res.message);
@@ -58,7 +55,7 @@ export const ChangeInfoPage = () => {
                 const errorMessage = response.data.message;
                 message.error(errorMessage);
             })
-    }
+    };
 
     return (
         <>
@@ -69,18 +66,15 @@ export const ChangeInfoPage = () => {
                         <ModalUploadImage open={open} setOpen={setOpen} />
                         <Avatar onClick={showModal} src={user.avatar} size={130} icon={<UserOutlined />} className="profile__header-avatar" />
                     </div>
-                    <Form initialValues={initialValues} onFinish={onFinish} className="profile__info profile__info_editable">
+                    <Form onFinish={onFinish} className="profile__info profile__info_editable">
                         <Form.Item noStyle>
-                            <FieldEditable label="Почта" name="email" rules={emailRules} />
+                            <FieldPassword label="Старый пароль" rules={passwordRules} name={"oldPassword"} />
                         </Form.Item>
                         <Form.Item noStyle>
-                            <FieldEditable label="Логин" name="login" rules={loginRules} />
+                            <FieldPassword label="Новый пароль" rules={passwordRules} name={"newPassword"} />
                         </Form.Item>
                         <Form.Item noStyle>
-                            <FieldEditable label="Имя" name="name" rules={infoRules} />
-                        </Form.Item>
-                        <Form.Item noStyle>
-                            <FieldEditable label="Фамилия" name="surname" rules={infoRules} />
+                            <FieldPassword label="Повторите новый пароль" rules={confirmPasswordRules("newPassword")} name={"newPasswordConfirmed"} dependencies={["newPassword"]} />
                         </Form.Item>
                         <div className="profile__info_editable-buttons">
                             <Form.Item>

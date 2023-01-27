@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ROUTES } from "@utils/constants";
-import { AuthPage, HomePage, ProfilePage, ChangeInfoPage } from "@pages";
+import { AuthPage, HomePage, ProfilePage, ChangeInfoPage, ChangePasswordPage } from "@pages";
 import { userIsAuthSelector } from "@redux/userSlice/selectors";
 import { useInitial } from "@utils/api/hooks";
 
@@ -29,6 +29,7 @@ const App = () => {
                     <Route path={"*"} element={<HomePage />} />
                     <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
                     <Route path={ROUTES.CHANGE_INFO} element={<ChangeInfoPage />} />
+                    <Route path={ROUTES.CHANGE_PASSWORD} element={<ChangePasswordPage />} />
                 </Routes>
             )}
         </>

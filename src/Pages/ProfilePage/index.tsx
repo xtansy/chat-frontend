@@ -31,6 +31,10 @@ export const ProfilePage = () => {
         navigate(ROUTES.CHANGE_INFO);
     }
 
+    const onClickChangePassword = () => {
+        navigate(ROUTES.CHANGE_PASSWORD);
+    }
+
     // upload modal visible
     const [open, setOpen] = useState(false);
 
@@ -54,11 +58,11 @@ export const ProfilePage = () => {
                         <Field Component={Text} name={"Почта"} value={user?.email} />
                         <Field Component={Text} name={"Логин"} value={user?.login} />
                         <Field Component={Text} name={"Имя"} value={user?.name} />
-                        <Field Component={Text} name={"Фамилия"} value={"surname"} />
+                        <Field Component={Text} name={"Фамилия"} value={user?.surname} />
                     </div>
                     <div className="profile__settings">
                         <Field Component={Link} onClick={onClickChangeInfo} name={"Изменить данные"} />
-                        <Field Component={Link} name={"Изменить пароль"} />
+                        <Field Component={Link} onClick={onClickChangePassword} name={"Изменить пароль"} />
                         <Field onClick={onClickLogout} Component={Link} name={"Выйти"} nameType="danger" />
                     </div>
                 </div>

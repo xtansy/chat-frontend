@@ -80,3 +80,15 @@ interface ModalsProps<T> {
     setOpen: Dispatch<SetStateAction<T>>;
 }
 
+
+interface FieldProps {
+    editableStr: string;
+    setEditableStr: Dispatch<React.SetStateAction<string>>
+    name: string;
+}
+
+interface ChangePassword {
+    oldPassword: string;
+    newPassword: string;
+}
+

@@ -66,7 +66,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }
                         name="confirm"
                         dependencies={["password"]}
                         hasFeedback
-                        rules={confirmPasswordRules}
+                        rules={confirmPasswordRules("password")}
                     >
                         <Input.Password placeholder="Повторите пароль" />
                     </Form.Item>

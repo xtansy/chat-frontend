@@ -1,5 +1,7 @@
 .field {
-    &__paragraphEditable {
-        margin-bottom: 0px !important;
+    &_value {
+        &-input {
+            padding: 0;
+        }
     }
 }
