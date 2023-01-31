@@ -1,6 +1,7 @@
+import "./HomePage.scss";
+
 import { useState } from "react";
 
-import "./HomePage.scss";
 import { HomeLeft } from "./HomeLeft";
 import { HomeRight } from "./HomeRight";
 

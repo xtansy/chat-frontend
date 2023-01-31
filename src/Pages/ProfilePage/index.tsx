@@ -24,6 +24,7 @@ export const ProfilePage = () => {
     const user = useSelector(userSelector);
 
     const onClickLogout = () => {
+        navigate(ROUTES.AUTH);
         dispatch(logout());
     }
 

@@ -1,0 +1,7 @@
+all users page (simple)
+page for other users (simple)
+
+sending img in message (middle)
+
+messages notifications (hard)
+timestamps in message (hard)

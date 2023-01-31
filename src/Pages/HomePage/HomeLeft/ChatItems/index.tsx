@@ -1,13 +1,15 @@
+import "./ChatItems.scss";
+
+import { Spin } from 'antd';
+import { Dispatch, SetStateAction } from 'react';
 import { useSelector } from 'react-redux';
 
 import { dialogsSelector } from '@redux/dialogSlice/selectors';
 import { userSelector } from '@redux/userSlice/selectors';
-import { ChatItem } from './ChatItem/ChatItem';
-import "./ChatItems.scss";
-import { Dispatch, SetStateAction } from 'react';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
 import { PartnerNotFoundNotif } from '@common';
 
+import { ChatItem } from './ChatItem/ChatItem';
 interface ChatItemsProps {
     setActiveDialogId: Dispatch<SetStateAction<Dialog["_id"] | null>>;
     term: string;
@@ -29,7 +31,7 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term })
 
     const filteredDialogs = myDialogs.filter(dialog => dialog.partner.name.includes(term));
 
-    if (dialogsLoading) return <h1>ЗАГРУЗКА ДИАЛОГОВ...</h1>
+    if (dialogsLoading) return <Spin size="large" />
 
 
     return (

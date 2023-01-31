@@ -1,22 +1,26 @@
-import { Typography, Input, Button, Form } from "antd";
 import "./SignIn.scss";
+
+import { Typography, Input, Button, Form } from "antd";
+import { useNavigate } from "react-router-dom";
+
 import {
     loginRules,
     passwordRules,
-    confirmPasswordRules,
-    infoRules,
+    ROUTES,
 } from "@utils/constants";
 
 import { fetchSignIn } from "@redux/userSlice";
 import { useAppDispatch } from "@store";
 
-
-
 export const SignIn = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
+
     const onFinish = (values: signInProps) => {
         dispatch(fetchSignIn(values));
+        navigate(ROUTES.HOME);
     };
+
     return (
         <div className="signIn">
             <Typography.Title className="signIn__title">Вход</Typography.Title>

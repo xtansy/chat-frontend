@@ -3,3 +3,4 @@ export * from "./HomePage/";
 export * from "./ProfilePage";
 export * from "./ChangeInfoPage";
 export * from "./ChangePasswordPage";
+export * from "./NotFoundPage";
