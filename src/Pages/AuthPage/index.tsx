@@ -1,11 +1,11 @@
+import "./Auth.scss";
+
 import { useState } from "react";
-import { Button } from "antd";
-import { notification } from 'antd';
+import { Button, notification } from "antd";
 
 import { SignUp } from "./SignUp/SignUp";
 import { SignIn } from "./SignIn/SignIn";
 import { successNotif, failedNotif } from "@utils/constants";
-import "./Auth.scss";
 
 export const AuthPage = () => {
     const [isSignUp, setIsSignUp] = useState<boolean>(false);

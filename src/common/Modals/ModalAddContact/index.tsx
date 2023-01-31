@@ -1,9 +1,9 @@
-import { Button, Modal, message } from 'antd';
+import "./ModalAddContact.scss";
+
+import { Button, Modal, message, Input } from 'antd';
 import { useState } from 'react';
-import { Input } from 'antd';
 import { useSelector } from 'react-redux';
 
-import "./ModalAddContact.scss";
 import { useAppDispatch } from '@store';
 import { fetchDialogs } from '@redux/dialogSlice';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
@@ -17,7 +17,7 @@ export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen 
 
     const [login, setLogin] = useState<User["login"] | undefined>(undefined);
 
-    const handleOk = async () => {
+    const handleOk = () => {
         if (login) {
             createDialog({ partnerLogin: login })
                 .then(res => {
@@ -67,7 +67,7 @@ export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen 
                     className='modalAddContact__input'
                     value={login}
                     allowClear
-                    placeholder='Введите login'
+                    placeholder='Введите логин'
                     showCount maxLength={20}
                     onChange={onChange} />
             </Modal>

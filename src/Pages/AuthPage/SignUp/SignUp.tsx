@@ -1,8 +1,9 @@
+import "./SignUp.scss";
+
 import { Typography, Input, Button } from "antd";
 import { Form } from "antd";
 import { useEffect } from "react";
 
-import "./SignUp.scss";
 import {
     loginRules,
     passwordRules,
@@ -16,6 +17,7 @@ interface SignUpProps {
     onSuccesSignUp: () => void;
     onFailedSignUp: (errorMessage: string) => void;
 }
+
 export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }) => {
     const { data, isLoading, isError, fetchSignUp, error } = useSignUp();
 

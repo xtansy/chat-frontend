@@ -37,7 +37,7 @@ export const HomeLeft: React.FC<HomeLeftProps> = ({ setActiveDialogId }) => {
                 </Text>
                 <FormOutlined onClick={showModal} />
             </div>
-            <Input className='home__left-input' value={term} allowClear placeholder='Введите login' showCount maxLength={20} onChange={onChange} />
+            <Input className='home__left-input' value={term} allowClear placeholder='Поиск среди добавленных' showCount maxLength={20} onChange={onChange} />
             <ChatItems term={term} setActiveDialogId={setActiveDialogId} />
         </div>
     );

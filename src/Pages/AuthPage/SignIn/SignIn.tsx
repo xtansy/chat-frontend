@@ -1,6 +1,6 @@
 import "./SignIn.scss";
 
-import { Typography, Input, Button, Form } from "antd";
+import { Typography, Input, Button, Form, message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -9,7 +9,8 @@ import {
     ROUTES,
 } from "@utils/constants";
 
-import { fetchSignIn } from "@redux/userSlice";
+import { fetchGetMe } from "@redux/userSlice";
+import { signIn } from "@utils/api/requests/auth";
 import { useAppDispatch } from "@store";
 
 export const SignIn = () => {
@@ -17,9 +18,18 @@ export const SignIn = () => {
     const dispatch = useAppDispatch();
 
     const onFinish = (values: signInProps) => {
-        dispatch(fetchSignIn(values));
-        navigate(ROUTES.HOME);
+        signIn(values)
+            .then(res => {
+                dispatch(fetchGetMe());
+                navigate(ROUTES.HOME);
+                message.success('Вы успешно авторизировались!');
+            })
+            .catch(({ response }) => {
+                const errorMessage = response.data.message;
+                message.error(errorMessage);
+            })
     };
+
 
     return (
         <div className="signIn">

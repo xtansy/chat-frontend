@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ROUTES } from "@utils/constants";
@@ -6,17 +6,11 @@ import { AuthPage, HomePage, ProfilePage, ChangeInfoPage, ChangePasswordPage, No
 import { userIsAuthSelector } from "@redux/userSlice/selectors";
 import { useInitial } from "@utils/api/hooks";
 
-import { HomeSkeleton } from "@common";
-
-
-
-
 const App = () => {
 
     useInitial();
 
     const isAuth = useSelector(userIsAuthSelector);
-
 
     return (
         <>

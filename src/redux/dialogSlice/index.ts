@@ -1,22 +1,13 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { createDialog, getDialogs } from "@utils/api/requests/dialog";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+
+import { getDialogs } from "@utils/api/requests/dialog";
 
 interface DialogSlice {
     isLoading: boolean;
     dialogs: Dialog[];
     isError: string | null;
 }
-
-export const fetchCreateDialog = createAsyncThunk<Response<Dialog>, createDialogProps, { rejectValue: any }>("dialogSlice/fetchCreateDialog", async (action, { rejectWithValue }) => {
-    try {
-        return await createDialog(action)
-    } catch (error) {
-        const err = error as AxiosError;
-        return rejectWithValue(err.response?.data);
-    }
-});
-
 
 export const fetchDialogs = createAsyncThunk<Response<Dialog[]>, void, { rejectValue: any }>("dialogSlice/fetchDialogs", async (action, { rejectWithValue }) => {
     try {
@@ -26,8 +17,6 @@ export const fetchDialogs = createAsyncThunk<Response<Dialog[]>, void, { rejectV
         return rejectWithValue(err.response?.data);
     }
 });
-
-
 
 const initialState: DialogSlice = {
     dialogs: [],
@@ -50,18 +39,6 @@ const dialogSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchCreateDialog.pending, (state) => {
-            state.isLoading = true;
-        })
-        builder.addCase(fetchCreateDialog.rejected, (state, action) => {
-            state.isLoading = false;
-            state.isError = action.payload.message;
-        })
-        builder.addCase(fetchCreateDialog.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isError = null;
-        })
-        //////////////////////////////////////
         builder.addCase(fetchDialogs.pending, (state) => {
             state.isLoading = true;
         })
