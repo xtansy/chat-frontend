@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { Provider } from "react-redux";
 import 'overlayscrollbars/overlayscrollbars.css';
+import "./assets/scss/global.scss";
 
 import { store } from "@store";
 
