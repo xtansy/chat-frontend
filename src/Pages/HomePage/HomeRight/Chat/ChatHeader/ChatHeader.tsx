@@ -1,3 +1,5 @@
+import "./ChatHeader.scss";
+
 import {
     UserOutlined,
     MoreOutlined,

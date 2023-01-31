@@ -1,0 +1,10 @@
+.chat {
+    &__messages {
+        margin-bottom: 30px;
+        min-height: 610px;
+        display: flex;
+        flex-direction: column;
+        padding-right: 20px;
+        // overflow-y: auto;
+    }
+}

@@ -1,3 +1,5 @@
+import "./Messages.scss";
+
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 

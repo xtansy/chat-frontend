@@ -1,0 +1,65 @@
+.chat {
+    &__header {
+        border-bottom: 1px solid #eaeaea;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-info {
+            display: flex;
+            align-items: center;
+        }
+
+        &-icon {
+            font-size: 23px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 25px;
+            height: 25px;
+            border-radius: 70%;
+        }
+
+        &-icon:hover {
+            color: blue;
+            background: #F5F5F5;
+        }
+
+        &-icon:active {
+            background: rgba(0, 0, 255, 0.24);
+        }
+
+        &-popover {
+            &__item {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                margin-bottom: 10px;
+                border-radius: 20px;
+                padding: 5px;
+
+                &-icon {
+                    font-size: 20px;
+                }
+
+                &-text {
+                    font-weight: 500;
+                    margin-left: 5px;
+
+                    &_link {
+                        margin-left: 7px;
+                        color: #3369f3;
+                    }
+                }
+
+                &_linkTo:hover {
+                    background: #3369f341;
+                }
+
+                &_deleteUser:hover {
+                    background: rgba(204, 22, 22, 0.199);
+                }
+            }
+        }
+    }
+}
