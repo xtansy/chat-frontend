@@ -23,15 +23,18 @@ export const Message: React.FC<MessageProps> = ({
         message_my: isMy,
     });
 
+    const isHavePhotos = photos && photos.length > 0;
+
     return (
         <div className={styles}>
             <div className="message__content">
-                <div className="message__content-images">
-                    <Image.PreviewGroup>
-                        {photos &&
-                            photos.map((photo) => {
+                <Image.PreviewGroup>
+                    {isHavePhotos &&
+                        <div className="message__content-images">
+                            {photos.map((photo) => {
                                 return (
                                     <Image
+                                        key={photo}
                                         placeholder={
                                             <Image
                                                 preview={false}
@@ -46,8 +49,10 @@ export const Message: React.FC<MessageProps> = ({
                                     />
                                 );
                             })}
-                    </Image.PreviewGroup>
-                </div>
+                        </div>
+
+                    }
+                </Image.PreviewGroup>
                 <div>{text}</div>
             </div>
             <div className="message__date">
