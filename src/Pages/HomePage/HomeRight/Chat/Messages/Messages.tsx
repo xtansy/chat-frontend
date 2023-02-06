@@ -12,7 +12,6 @@ interface MessagesProps {
 }
 
 export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
-
     const userId = useSelector(userIdSelector);
 
     const messagesRef = useRef<HTMLDivElement>(null);
@@ -27,21 +26,19 @@ export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
     return (
         <div ref={messagesRef}>
             <div ref={scrollRef} className="chat__messages">
-                {
-                    dialog.messages.map((item) => {
-                        const isMy = item.userId === userId;
-                        return (
-                            <Message
-                                isMy={isMy}
-                                key={item._id}
-                                text={item.text}
-                                photos={item.photos}
-                                date={item.createdAt} />
-                        )
-                    })
-                }
+                {dialog.messages.map((item) => {
+                    const isMy = item.userId === userId;
+                    return (
+                        <Message
+                            isMy={isMy}
+                            key={item._id}
+                            text={item.text}
+                            photos={item.photos}
+                            date={item.createdAt}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
 };
-

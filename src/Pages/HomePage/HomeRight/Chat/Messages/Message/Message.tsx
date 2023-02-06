@@ -13,30 +13,45 @@ interface MessageProps {
     photos?: string[];
 }
 
-export const Message: React.FC<MessageProps> = ({ isMy, text, date, photos }) => {
-
+export const Message: React.FC<MessageProps> = ({
+    isMy,
+    text,
+    date,
+    photos,
+}) => {
     const styles = classnames("message", {
         message_my: isMy,
     });
 
     return (
         <div className={styles}>
-            {
-                photos &&
-                photos.map(photo => {
-                    return (
-                        <Image src={photo} width={75} height={50} />
-                    )
-                })
-            }
-            {text}
+            <div className="message__content">
+                <div className="message__content-images">
+                    <Image.PreviewGroup>
+                        {photos &&
+                            photos.map((photo) => {
+                                return (
+                                    <Image
+                                        placeholder={
+                                            <Image
+                                                preview={false}
+                                                src={photo}
+                                                width={75}
+                                                height={50}
+                                            />
+                                        }
+                                        src={photo}
+                                        width={225}
+                                        height={150}
+                                    />
+                                );
+                            })}
+                    </Image.PreviewGroup>
+                </div>
+                <div>{text}</div>
+            </div>
             <div className="message__date">
-                <Text
-                    style={{
-                        fontSize: 9,
-                    }}
-                    type="secondary"
-                >
+                <Text className="message__date-text" type="secondary">
                     {formatDateMessage(date)}
                 </Text>
             </div>

@@ -7,10 +7,25 @@
     background: #eff0f1;
     position: relative;
 
+    max-width: 750px;
+
+    &__content {
+        &-images {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+        }
+    }
+
     &__date {
         position: absolute;
         right: 11px;
         bottom: 11px;
+        &-text {
+            font-size: 9px;
+        }
     }
 
     &_my {
