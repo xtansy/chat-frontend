@@ -28,10 +28,15 @@ export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
         <div ref={messagesRef}>
             <div ref={scrollRef} className="chat__messages">
                 {
-                    dialog.messages.map((item, i) => {
+                    dialog.messages.map((item) => {
                         const isMy = item.userId === userId;
                         return (
-                            <Message key={i} isMy={isMy} text={item.text} date={item.createdAt} />
+                            <Message
+                                isMy={isMy}
+                                key={item._id}
+                                text={item.text}
+                                photos={item.photos}
+                                date={item.createdAt} />
                         )
                     })
                 }

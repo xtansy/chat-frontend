@@ -71,4 +71,3 @@ export const ModalUploadImage: React.FC<ModalsProps<boolean>> = ({ open, setOpen
         </Modal>
     );
 };
-

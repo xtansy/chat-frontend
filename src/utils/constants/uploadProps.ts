@@ -15,3 +15,4 @@ export const uploadAvatarProps = (state: UploadFile | null, setState: Dispatch<S
         fileList: state ? [state] : []
     };
 }
+

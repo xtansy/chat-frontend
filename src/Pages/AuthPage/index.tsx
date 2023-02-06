@@ -30,7 +30,7 @@ export const AuthPage = () => {
         api.open(failedNotif(notifInfo));
     };
 
-    const buttonText = isSignUp ? "Войти" : "Нет Аккаутна?";
+    const buttonText = isSignUp ? "Войти" : "Нет Аккаунта?";
 
     return (
         <div className="wrapper">

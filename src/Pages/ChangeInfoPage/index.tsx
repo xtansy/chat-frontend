@@ -9,15 +9,17 @@ import { UserOutlined } from "@ant-design/icons";
 
 import { ArrowToHome, ModalUploadImage } from "@common";
 import { userSelector, userLoadingSelector } from "@redux/userSlice/selectors";
-import { FieldEditable } from "./FieldEditable/FieldEditable";
 import { changeUserInfo } from "@utils/api/requests/user";
 import { useAppDispatch } from "@store";
 import { fetchGetMe } from "@redux/userSlice";
+
 import {
     loginRules,
     infoRules,
     emailRules,
 } from "@utils/constants";
+
+import { FieldEditable } from "./FieldEditable/FieldEditable";
 
 export const ChangeInfoPage = () => {
     const dispatch = useAppDispatch();

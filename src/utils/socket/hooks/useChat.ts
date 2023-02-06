@@ -25,6 +25,7 @@ export const useChat = () => {
 
     useEffect(() => {
         socket.on("message", (obj) => {
+            console.log(obj);
             dispatch(addMessage(obj));
         })
         socket.on("createDialog", (obj) => {

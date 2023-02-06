@@ -1,0 +1,20 @@
+.imageList {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+
+    &__item {
+        margin-right: 15px;
+        position: relative;
+
+        &-deleteIcon {
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            z-index: 2;
+            position: absolute;
+            right: 3%;
+            top: 3%;
+        }
+    }
+}

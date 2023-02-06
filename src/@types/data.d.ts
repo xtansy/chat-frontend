@@ -48,6 +48,7 @@ interface Message {
     userId: string;
     _id: string;
     createdAt: string;
+    photos?: string[];
 }
 interface Dialog {
     owner: User;
@@ -69,7 +70,7 @@ interface ServerToClientEvents {
 
 interface ClientToServerEvents {
     join: (dialogIds: Dialog["_id"][]) => void;
-    message: (obj: { dialogId: string; text: string, userId: string }) => void;
+    message: (obj: { dialogId: string; message: ChatMessage, userId: string }) => void;
 }
 
 
@@ -91,4 +92,7 @@ interface ChangePassword {
     oldPassword: string;
     newPassword: string;
 }
-
+interface ChatMessage {
+    text: string;
+    imagesFiles: File[];
+}

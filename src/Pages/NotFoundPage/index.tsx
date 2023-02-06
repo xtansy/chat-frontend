@@ -12,7 +12,7 @@ export const NotFoundPage = () => {
     useEffect(() => {
         const timeOut = setTimeout(() => {
             setTimeUpVisible(true);
-        }, 5000)
+        }, 10_000)
 
         return () => {
             clearTimeout(timeOut);

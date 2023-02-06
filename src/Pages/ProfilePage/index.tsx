@@ -13,8 +13,9 @@ import { logout } from "@redux/userSlice";
 import { userSelector } from "@redux/userSlice/selectors";
 import { useAppDispatch } from "@store";
 import { ModalUploadImage, ArrowToHome } from "@common";
-import { Field } from "./Field/Field";
 import { ROUTES } from "@utils/constants";
+
+import { Field } from "./Field/Field";
 
 export const ProfilePage = () => {
 
@@ -45,9 +46,7 @@ export const ProfilePage = () => {
 
     return (
         <>
-
             <ArrowToHome />
-
             <div className="profileWrapper">
                 <div className="profile">
                     <div className="profile__header">

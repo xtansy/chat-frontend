@@ -1,7 +1,16 @@
-all users page (simple)
-page for other users (simple)
+all users page (simple) ---
+page for other users (simple) ---
 
-sending img in message (middle)
+sending img in message (middle) **- {
+    todo:
+        fix problem with unique key prop
+        make better Image component for buety visual in message
+}
 
-messages notifications (hard)
-timestamps in message (hard)
+messages notifications (hard) ---
+timestamps in message (hard) ---
+
+*   приступил и понял
+**  сделал
+*** улучшил
+
