@@ -3,7 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 import "./ChatItem.scss";
 
-import { formatDateMessage } from "@utils/helpers";
+import { formatDateInMessage } from "@utils/helpers";
 
 interface ChatItemProps {
     name: User["name"];
@@ -13,7 +13,7 @@ interface ChatItemProps {
 
 export const ChatItem: React.FC<ChatItemProps> = ({ name, message, avatar }) => {
 
-    const formatDate = message ? formatDateMessage(message.createdAt) : null;
+    const formatDate = message ? formatDateInMessage(message.createdAt) : null;
     return (
         <div className="chatItem">
             <div className="chatItem__left">

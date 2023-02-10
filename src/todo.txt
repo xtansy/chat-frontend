@@ -1,9 +1,12 @@
-page for other users (simple) ---
+adaptive for all devices(simple) ---
+page for other users (simple) --- 
+role in profile (simple) ---
+
+fix holes in backend (middle) ---
+fix file load on front (middle) ---
 
 messages notifications (hard) ---
-timestamps in message (hard) ---
 
-*   приступил и понял
-**  сделал
-*** улучшил
+
+
 

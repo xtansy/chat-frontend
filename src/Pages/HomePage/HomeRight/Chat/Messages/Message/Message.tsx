@@ -4,10 +4,10 @@ import classnames from "classnames";
 import { Typography, Image } from "antd";
 const { Text } = Typography;
 
-import { formatDateMessage } from "@utils/helpers";
+import { formatDateInMessage } from "@utils/helpers";
 
 interface MessageProps {
-    isMy: boolean;
+    isMy?: boolean;
     text: string;
     date: string;
     photos?: string[];
@@ -57,7 +57,7 @@ export const Message: React.FC<MessageProps> = ({
             </div>
             <div className="message__date">
                 <Text className="message__date-text" type="secondary">
-                    {formatDateMessage(date)}
+                    {formatDateInMessage(date)}
                 </Text>
             </div>
         </div>

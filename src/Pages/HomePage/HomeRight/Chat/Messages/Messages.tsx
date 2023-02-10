@@ -3,64 +3,60 @@ import "./Messages.scss";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 
-import { Message } from "./Message/Message";
+import { Typography } from "antd";
+const { Text } = Typography;
+
 import { userIdSelector } from "@redux/userSlice/selectors";
 import { useScrollbar, useAutoScroll } from "@utils/hooks";
-import { getDayInterval } from "@utils/helpers";
+import { isNewDay, formatDateOutMessage } from "@utils/helpers";
 
-import { formatDistance, format } from "date-fns";
-import ruLang from "date-fns/locale/ru";
+import { Message } from "./Message/Message";
 
 interface MessagesProps {
     dialog: Dialog;
 }
-const myFormat = (date: string): string => {
-    return format(new Date(date), "pp", {
-        locale: ruLang,
-    });
-};
-export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
 
-    const messages = dialog.messages;
+export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
     const userId = useSelector(userIdSelector);
 
+    const messages = dialog.messages;
+    const firstMessage = dialog.messages[0];
+
+    // for custom scrollbar and autoscroll hooks
     const messagesRef = useRef<HTMLDivElement>(null);
-
     const scrollRef = useRef<HTMLDivElement>(null);
-
     const messagesLength = dialog.messages.length;
 
     useScrollbar({ node: messagesRef, visible: true });
     useAutoScroll({ node: scrollRef, length: messagesLength });
+    //
 
     return (
         <div ref={messagesRef}>
             <div ref={scrollRef} className="chat__messages">
+
+                {firstMessage && <Text type="secondary" className="chat__messages-firstDate">{formatDateOutMessage(firstMessage.createdAt)}</Text>}
+
                 {messages.map((item, i) => {
 
                     const isMy = item.userId === userId;
 
-                    const nextItem = dialog.messages[i + 1];
-                    if (nextItem) {
-                        const datePrev = new Date(messages[i].createdAt);
+                    const firstDate = messages[i].createdAt;
+                    const secondDate = messages[i + 1]?.createdAt;
 
-                        const dateNext = new Date(messages[i + 1].createdAt);
-
-                        let dayDif = dateNext.getDate() - datePrev.getDate();
-
-                        if (dayDif > 0) {
-                            return (
-                                <div key={item._id}>
-                                    <h3>{myFormat(nextItem.createdAt)}</h3>
-                                    <Message
-                                        isMy={isMy}
-                                        text={item.text}
-                                        photos={item.photos}
-                                        date={item.createdAt}
-                                    />
-                                </div>
-                            )
-                        }
+                    if (secondDate && isNewDay(firstDate, secondDate)) {
+                        const clazzBlock = isMy ? "chat__messages-dateBlock_my" : "chat__messages-dateBlock";
+                        return (
+                            <div key={item._id} className={clazzBlock}>
+                                <Message
+                                    isMy={isMy}
+                                    text={item.text}
+                                    photos={item.photos}
+                                    date={item.createdAt}
+                                />
+                                <Text type="secondary">{formatDateOutMessage(secondDate)}</Text>
+                            </div>
+                        )
                     }
 
                     return (
@@ -74,6 +70,6 @@ export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
                     );
                 })}
             </div>
-        </div>
+        </div >
     );
 };
