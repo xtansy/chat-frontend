@@ -5,7 +5,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useAppDispatch } from "@store";
 import { fetchGetMe } from '@redux/userSlice';
 import { uploadAvatar } from "@utils/api/requests/user";
-import { uploadAvatarProps } from '@utils/constants';
+import { uploadAvatarProps, IMAGES_TYPES } from '@utils/constants';
 
 
 export const ModalUploadImage: React.FC<ModalsProps<boolean>> = ({ open, setOpen }) => {
@@ -22,15 +22,23 @@ export const ModalUploadImage: React.FC<ModalsProps<boolean>> = ({ open, setOpen
 
     const handleUpload = () => {
         if (avatar) {
+
+            const isValidFile = avatar.type && IMAGES_TYPES.includes(avatar.type);
+
+            if (!isValidFile) {
+                message.error("Недопустимый тип файла!")
+                return;
+            }
+
             setUploading(true);
             uploadAvatar(avatar)
                 .then(() => {
                     setAvatar(null);
                     dispatch(fetchGetMe());
-                    message.success('upload successfully.');
+                    message.success('Загрузка прошла успешно!');
                 })
                 .catch(() => {
-                    message.error('upload failed.');
+                    message.error('Загрузка провалена!');
                 })
                 .finally(() => {
                     setUploading(false);

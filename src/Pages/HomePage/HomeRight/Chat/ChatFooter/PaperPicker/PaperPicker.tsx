@@ -9,11 +9,12 @@ import { Dropdown, MenuProps, message } from "antd";
 
 import { ChangeEvent } from "react";
 
+import { IMAGES_TYPES } from "@utils/constants";
+
 interface PaperPickerProps {
     setImagesFiles: (cb: (prevImages: File[]) => File[]) => void;
 }
 
-const IMAGES_TYPES = ["image/jpeg", "image/png",];
 
 export const PaperPicker: React.FC<PaperPickerProps> = ({ setImagesFiles }) => {
 
