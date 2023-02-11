@@ -15,7 +15,9 @@
             text-align: center;
 
             &_my {
-                align-self: flex-end;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
             }
         }
     }

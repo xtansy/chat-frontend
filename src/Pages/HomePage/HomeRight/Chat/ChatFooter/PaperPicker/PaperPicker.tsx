@@ -13,12 +13,22 @@ interface PaperPickerProps {
     setImagesFiles: (cb: (prevImages: File[]) => File[]) => void;
 }
 
+const IMAGES_TYPES = ["image/jpeg", "image/png",];
+
 export const PaperPicker: React.FC<PaperPickerProps> = ({ setImagesFiles }) => {
 
     const onLoadImage = (e: ChangeEvent<HTMLInputElement>) => {
         const filesList = e.target.files;
         if (filesList) {
             const filesArr = Object.values(filesList);
+
+            const isNoValidFile = filesArr.find(item => !IMAGES_TYPES.includes(item.type));
+
+            if (isNoValidFile) {
+                message.error("Недопустимый тип файла!")
+                return;
+            }
+
             setImagesFiles(prevImagesFiles => {
                 if (prevImagesFiles.length + filesArr.length <= 10) {
                     return [...prevImagesFiles, ...filesArr];
