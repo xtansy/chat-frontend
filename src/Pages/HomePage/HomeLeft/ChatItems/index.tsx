@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { dialogsSelector } from '@redux/dialogSlice/selectors';
 import { userSelector } from '@redux/userSlice/selectors';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
-import { PartnerNotFoundNotif } from '@common';
 
 import { ChatItem } from './ChatItem/ChatItem';
 interface ChatItemsProps {
@@ -36,7 +35,6 @@ export const ChatItems: React.FC<ChatItemsProps> = ({ setActiveDialogId, term })
 
     return (
         <div className="chatItems">
-            <PartnerNotFoundNotif />
             {
                 filteredDialogs.map(item => {
                     const partner = item.partner;

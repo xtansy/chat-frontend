@@ -9,7 +9,7 @@ import { EmojiClickData } from "emoji-picker-react";
 
 
 interface EmojiPickerHoverProps {
-    setMessage: Dispatch<SetStateAction<ChatMessage>>
+    setMessage: Dispatch<SetStateAction<ChatMessageProps>>
 }
 
 export const EmojiPickerHover: React.FC<EmojiPickerHoverProps> = ({ setMessage }) => {

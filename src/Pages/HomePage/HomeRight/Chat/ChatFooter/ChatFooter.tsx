@@ -13,11 +13,10 @@ import { userIdSelector } from "@redux/userSlice/selectors";
 import { EmojiPickerHover } from "./EmojiPickerHover/EmojiPickerHover";
 import { PaperPicker } from "./PaperPicker/PaperPicker";
 import { ImageLoadedList } from "./ImageLoadedList/ImageLoadedList";
+
 interface ChatFooterProps {
     dialogId: Dialog["_id"];
 }
-
-
 
 const INITIAL_MESSAGE = {
     text: "",
@@ -28,7 +27,7 @@ export const ChatFooter: React.FC<ChatFooterProps> = ({ dialogId }) => {
 
     const userId = useSelector(userIdSelector);
 
-    const [message, setMessage] = useState<ChatMessage>(INITIAL_MESSAGE);
+    const [message, setMessage] = useState<ChatMessageProps>(INITIAL_MESSAGE);
 
     const onChangeInputText = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

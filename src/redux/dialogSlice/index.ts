@@ -6,7 +6,7 @@ import { getDialogs } from "@utils/api/requests/dialog";
 interface DialogSlice {
     isLoading: boolean;
     dialogs: Dialog[];
-    isError: string | null;
+    errorMessage: string | null;
 }
 
 export const fetchDialogs = createAsyncThunk<Response<Dialog[]>, void, { rejectValue: any }>("dialogSlice/fetchDialogs", async (action, { rejectWithValue }) => {
@@ -21,7 +21,7 @@ export const fetchDialogs = createAsyncThunk<Response<Dialog[]>, void, { rejectV
 const initialState: DialogSlice = {
     dialogs: [],
     isLoading: false,
-    isError: null,
+    errorMessage: null,
 
 }
 
@@ -35,7 +35,7 @@ const dialogSlice = createSlice({
             dialog?.messages.push(payload.message);
         },
         clearDialogsError: (state) => {
-            state.isError = null;
+            state.errorMessage = null;
         }
     },
     extraReducers: (builder) => {
@@ -44,10 +44,10 @@ const dialogSlice = createSlice({
         })
         builder.addCase(fetchDialogs.rejected, (state, action) => {
             state.isLoading = false;
-            state.isError = action.payload.message;
+            state.errorMessage = action.payload.message;
         })
         builder.addCase(fetchDialogs.fulfilled, (state, action) => {
-            state.isError = null;
+            state.errorMessage = null;
             state.isLoading = false;
             state.dialogs = action.payload.data;
         })

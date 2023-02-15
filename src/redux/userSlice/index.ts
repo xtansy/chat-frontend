@@ -8,13 +8,13 @@ interface UserSliceProps {
     user: User | null;
     isAuth: boolean;
     isLoading: boolean;
-    isError: string | null;
+    errorMessage: string | null;
 }
 const initialState: UserSliceProps = {
     user: null,
     isAuth: false,
     isLoading: false,
-    isError: null,
+    errorMessage: null,
 };
 
 export const fetchSignIn = createAsyncThunk<signInResult, signInProps, { rejectValue: any }>("userSlice/fetchSignIn", async (action, { rejectWithValue }) => {
@@ -42,7 +42,7 @@ const userSlice = createSlice({
             state.isAuth = false;
             state.user = null;
             state.isLoading = false;
-            state.isError = null;
+            state.errorMessage = null;
             localStorage.removeItem("token");
         },
     },
@@ -55,11 +55,11 @@ const userSlice = createSlice({
         builder.addCase(fetchGetMe.rejected, (state, action) => {
             state.isAuth = false;
             state.isLoading = false;
-            state.isError = action.payload.message;
+            state.errorMessage = action.payload.message;
             state.user = null;
         })
         builder.addCase(fetchGetMe.fulfilled, (state, action) => {
-            state.isError = null;
+            state.errorMessage = null;
             state.isAuth = true;
             state.isLoading = false;
             const { password, ...user } = action.payload.data;
@@ -74,11 +74,11 @@ const userSlice = createSlice({
         })
         builder.addCase(fetchSignIn.rejected, (state, action) => {
             state.isLoading = false;
-            state.isError = action.payload.message;
+            state.errorMessage = action.payload.message;
             state.user = null;
         })
         builder.addCase(fetchSignIn.fulfilled, (state, action) => {
-            state.isError = null;
+            state.errorMessage = null;
             state.isAuth = true;
             state.isLoading = false;
             const { password, ...user } = action.payload.data;

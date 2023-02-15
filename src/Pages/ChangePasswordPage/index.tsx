@@ -16,7 +16,7 @@ import { fetchGetMe } from "@redux/userSlice";
 
 import { FieldPassword } from "./FieldPassword/FieldPassword";
 
-interface PasswordFields extends ChangePassword {
+interface PasswordFields extends ChangePasswordProps {
     newPasswordConfirmed: string;
 }
 
