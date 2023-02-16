@@ -11,8 +11,6 @@ const { Text } = Typography;
 
 import { useState } from "react";
 
-import { useAppDispatch } from "@store";
-import { fetchDialogs } from "@redux/dialogSlice";
 import { deleteDialog } from "@utils/api/requests/dialog";
 
 interface ChatHeaderProps {
@@ -23,8 +21,6 @@ interface ChatHeaderProps {
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId }) => {
 
-    const dispatch = useAppDispatch();
-
     const [open, setOpen] = useState(false);
 
     const onClickOpenPopover = (newOpen: boolean) => {
@@ -33,7 +29,6 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId }
 
     const onClickDeleteDialog = async () => {
         await deleteDialog(dialogId);
-        dispatch(fetchDialogs());
     }
 
     const PopoverContent = () => {

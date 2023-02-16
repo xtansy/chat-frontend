@@ -24,8 +24,8 @@ export const SignIn = () => {
                 navigate(ROUTES.HOME);
                 message.success('Вы успешно авторизировались!');
             })
-            .catch(({ response }) => {
-                const errorMessage = response.data.message;
+            .catch((error: ErrorBackend<{ message: string }>) => {
+                const errorMessage = error.response.data.message;
                 message.error(errorMessage);
             })
     };

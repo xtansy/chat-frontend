@@ -26,7 +26,7 @@ export const fetchSignIn = createAsyncThunk<signInResult, signInProps, { rejectV
     }
 });
 
-export const fetchGetMe = createAsyncThunk<Response<UserResponse>, void, { rejectValue: any }>("userSlice/fetchGetMe", async (_, { rejectWithValue }) => {
+export const fetchGetMe = createAsyncThunk<Response<User>, void, { rejectValue: any }>("userSlice/fetchGetMe", async (_, { rejectWithValue }) => {
     try {
         return await getMe();
     } catch (error) {
@@ -62,8 +62,7 @@ const userSlice = createSlice({
             state.errorMessage = null;
             state.isAuth = true;
             state.isLoading = false;
-            const { password, ...user } = action.payload.data;
-            state.user = user;
+            state.user = action.payload.data;
         })
 
 
@@ -81,8 +80,7 @@ const userSlice = createSlice({
             state.errorMessage = null;
             state.isAuth = true;
             state.isLoading = false;
-            const { password, ...user } = action.payload.data;
-            state.user = user;
+            state.user = action.payload.data;
         })
     }
 });

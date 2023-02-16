@@ -27,9 +27,11 @@ export const useChat = () => {
             dispatch(addMessage(obj));
         })
         socket.on("createDialog", (obj) => {
+            console.log(obj);
             dispatch(fetchDialogs());
         })
         socket.on("deleteDialog", (obj) => {
+            console.log(obj);
             dispatch(fetchDialogs());
         })
     }, [])

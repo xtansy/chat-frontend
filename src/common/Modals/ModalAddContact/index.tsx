@@ -4,14 +4,10 @@ import { Button, Modal, message, Input } from 'antd';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useAppDispatch } from '@store';
-import { fetchDialogs } from '@redux/dialogSlice';
 import { dialogsLoadingSelector } from '@redux/dialogSlice/selectors';
 import { createDialog } from '@utils/api/requests/dialog';
 
 export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen }) => {
-
-    const dispatch = useAppDispatch();
 
     const isDialogLoading = useSelector(dialogsLoadingSelector);
 
@@ -21,7 +17,6 @@ export const ModalAddContact: React.FC<ModalsProps<boolean>> = ({ open, setOpen 
         if (login) {
             createDialog({ partnerLogin: login })
                 .then(res => {
-                    dispatch(fetchDialogs());
                     message.success('Диалог создан!');
                 })
                 .catch(({ response }) => {
