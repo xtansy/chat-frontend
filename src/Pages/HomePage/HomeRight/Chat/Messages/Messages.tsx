@@ -45,16 +45,15 @@ export const Messages: React.FC<MessagesProps> = ({ dialog }) => {
                     const secondDate = messages[i + 1]?.createdAt;
 
                     if (secondDate && isNewDay(firstDate, secondDate)) {
-                        const clazzBlock = isMy ? "chat__messages-dateBlock_my" : "chat__messages-dateBlock";
                         return (
-                            <div key={item._id} className={clazzBlock}>
+                            <div key={item._id} className={"chat__messages-dateBlock"}>
                                 <Message
                                     isMy={isMy}
                                     text={item.text}
                                     photos={item.photos}
                                     date={item.createdAt}
                                 />
-                                <Text type="secondary">{formatDateOutMessage(secondDate)}</Text>
+                                <Text className="chat__messages-dateBlock__timestamp" type="secondary">{formatDateOutMessage(secondDate)}</Text>
                             </div>
                         )
                     }

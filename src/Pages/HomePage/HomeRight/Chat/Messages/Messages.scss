@@ -12,12 +12,11 @@
         }
 
         &-dateBlock {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
 
-            &_my {
-                display: flex;
-                flex-direction: column;
-                text-align: center;
+            &__timestamp {
+                align-self: center;
             }
         }
     }
