@@ -21,9 +21,8 @@ interface SignUpProps {
 export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }) => {
     const { data, isLoading, isError, fetchSignUp, error } = useSignUp();
 
-    const onFinish = (values: signUpProps & { confirm: string }) => {
-        const { confirm, ...obj } = values;
-        fetchSignUp(obj);
+    const onFinish = (values: signUpProps) => {
+        fetchSignUp(values);
     };
 
     useEffect(() => {
@@ -65,7 +64,7 @@ export const SignUp: React.FC<SignUpProps> = ({ onSuccesSignUp, onFailedSignUp }
                     </Form.Item>
 
                     <Form.Item
-                        name="confirm"
+                        name="confirmPassword"
                         dependencies={["password"]}
                         hasFeedback
                         rules={confirmPasswordRules("password")}

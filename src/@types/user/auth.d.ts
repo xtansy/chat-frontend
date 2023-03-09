@@ -4,6 +4,7 @@ interface signUpProps {
     surname: string;
     email: string;
     password: string;
+    confirmPassword: string;
 }
 interface signInProps {
     login: string;

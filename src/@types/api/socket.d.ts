@@ -5,6 +5,6 @@ interface ServerToClientEvents {
 }
 
 interface ClientToServerEvents {
-    join: (dialogIds: Dialog["_id"][]) => void;
+    join: (obj: { dialogIds: Dialog["_id"][], userId: User["_id"] }) => void;
     message: (obj: { dialogId: string; message: ChatMessage, userId: string }) => void;
 }

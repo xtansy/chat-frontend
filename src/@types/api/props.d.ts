@@ -16,6 +16,7 @@ interface FieldProps {
 interface ChangePasswordProps {
     oldPassword: string;
     newPassword: string;
+    newPasswordConfirmed: string;
 }
 
 interface ChatMessageProps {

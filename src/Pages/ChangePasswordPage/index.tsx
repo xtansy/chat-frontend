@@ -16,10 +16,6 @@ import { fetchGetMe } from "@redux/userSlice";
 
 import { FieldPassword } from "./FieldPassword/FieldPassword";
 
-interface PasswordFields extends ChangePasswordProps {
-    newPasswordConfirmed: string;
-}
-
 
 export const ChangePasswordPage = () => {
     const dispatch = useAppDispatch();
@@ -27,8 +23,6 @@ export const ChangePasswordPage = () => {
 
     const user = useSelector(userSelector);
     const userLoading = useSelector(userLoadingSelector);
-
-
 
     // avatar modal visible
     const [open, setOpen] = useState(false);
@@ -45,7 +39,7 @@ export const ChangePasswordPage = () => {
 
     if (!user) return null;
 
-    const onFinish = (values: PasswordFields) => {
+    const onFinish = (values: ChangePasswordProps) => {
         changeUserPassword(values)
             .then(res => {
                 dispatch(fetchGetMe());
