@@ -15,12 +15,13 @@
 
 ### :hammer: Технологии
 
-![React](https://img.shields.io/badge/react-61DAFB.svg?&style=for-the-badge&logo=react&logoColor=fff)
-
-![React](https://img.shields.io/badge/react--router-61DAFB.svg?&style=for-the-badge&logo=reactrouter&logoColor=fff)
-
-![Redux](https://img.shields.io/badge/redux-764ABC.svg?&style=for-the-badge&logo=redux&logoColor=fff)
-
-![Redux](https://img.shields.io/badge/redux--toolkit-764ABC.svg?&style=for-the-badge&logo=redux&logoColor=fff)
-
-![Socket](https://img.shields.io/badge/-Socket.IO-black?style=for-the-badge&logo=socketdotio)
+- React
+- React-Router-Dom
+- Redux-Toolkit
+- axios
+- date-fns
+- classnames
+- OverlayScrollbars
+- Emoji-Picker-React
+- Antd
+- Socket IO
