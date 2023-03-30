@@ -1,5 +1,5 @@
-import { BACKEND_URL } from "../constants/backendUrl";
 import { io, Socket } from "socket.io-client";
 
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> =
-    io(BACKEND_URL);
+export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
+    process.env.BACKEND_URL || "http://localhost:8080/"
+);

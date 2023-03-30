@@ -1,8 +1,7 @@
-import { BACKEND_URL } from "../../constants/backendUrl";
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: BACKEND_URL,
+    baseURL: process.env.BACKEND_URL || "http://localhost:8080/",
 });
 
 export default api;
