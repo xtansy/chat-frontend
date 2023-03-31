@@ -1,5 +1,6 @@
 # :love_letter: Chat :love_letter:
 
+## :globe_with_meridians: [Ссылка на деплой](https://master--chat-frontend-deploy.netlify.app/)
 <a href="https://github.com/xtansy/chat-backend">Ссылка на backend</a>
 
 ## Frontend:
