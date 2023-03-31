@@ -21,9 +21,10 @@ const App = () => {
     return (
         <>
             <Routes>
+                {/* <Route path={"*"} element={<NotFoundPage />} /> */}
                 {isAuth ? (
                     <>
-                        <Route path={ROUTES.HOME} element={<HomePage />} />
+                        <Route path={"*"} element={<HomePage />} />
                         <Route
                             path={ROUTES.PROFILE}
                             element={<ProfilePage />}
@@ -38,9 +39,8 @@ const App = () => {
                         />
                     </>
                 ) : (
-                    <Route path={ROUTES.AUTH} element={<AuthPage />} />
+                    <Route path={"*"} element={<AuthPage />} />
                 )}
-                <Route path={"*"} element={<NotFoundPage />} />
             </Routes>
         </>
     );

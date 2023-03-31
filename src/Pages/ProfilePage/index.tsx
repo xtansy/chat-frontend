@@ -18,31 +18,30 @@ import { ROUTES } from "@utils/constants";
 import { Field } from "./Field/Field";
 
 export const ProfilePage = () => {
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const user = useSelector(userSelector);
 
     const onClickLogout = () => {
-        navigate(ROUTES.AUTH);
         dispatch(logout());
-    }
+        navigate(ROUTES.AUTH);
+    };
 
     const onClickChangeInfo = () => {
         navigate(ROUTES.CHANGE_INFO);
-    }
+    };
 
     const onClickChangePassword = () => {
         navigate(ROUTES.CHANGE_PASSWORD);
-    }
+    };
 
     // upload modal visible
     const [open, setOpen] = useState(false);
 
     const showModal = () => {
         setOpen(true);
-    }
+    };
 
     return (
         <>
@@ -51,19 +50,56 @@ export const ProfilePage = () => {
                 <div className="profile">
                     <div className="profile__header">
                         <ModalUploadImage open={open} setOpen={setOpen} />
-                        <Avatar onClick={showModal} src={user?.avatar} size={130} icon={<UserOutlined />} className="profile__header-avatar" />
-                        <Title className="profile__header-title">{user?.name}</Title>
+                        <Avatar
+                            onClick={showModal}
+                            src={user?.avatar}
+                            size={130}
+                            icon={<UserOutlined />}
+                            className="profile__header-avatar"
+                        />
+                        <Title className="profile__header-title">
+                            {user?.name}
+                        </Title>
                     </div>
                     <div className="profile__info">
-                        <Field Component={Text} name={"Почта"} value={user?.email} />
-                        <Field Component={Text} name={"Логин"} value={user?.login} />
-                        <Field Component={Text} name={"Имя"} value={user?.name} />
-                        <Field Component={Text} name={"Фамилия"} value={user?.surname} />
+                        <Field
+                            Component={Text}
+                            name={"Почта"}
+                            value={user?.email}
+                        />
+                        <Field
+                            Component={Text}
+                            name={"Логин"}
+                            value={user?.login}
+                        />
+                        <Field
+                            Component={Text}
+                            name={"Имя"}
+                            value={user?.name}
+                        />
+                        <Field
+                            Component={Text}
+                            name={"Фамилия"}
+                            value={user?.surname}
+                        />
                     </div>
                     <div className="profile__settings">
-                        <Field Component={Link} onClick={onClickChangeInfo} name={"Изменить данные"} />
-                        <Field Component={Link} onClick={onClickChangePassword} name={"Изменить пароль"} />
-                        <Field onClick={onClickLogout} Component={Link} name={"Выйти"} nameType="danger" />
+                        <Field
+                            Component={Link}
+                            onClick={onClickChangeInfo}
+                            name={"Изменить данные"}
+                        />
+                        <Field
+                            Component={Link}
+                            onClick={onClickChangePassword}
+                            name={"Изменить пароль"}
+                        />
+                        <Field
+                            onClick={onClickLogout}
+                            Component={Link}
+                            name={"Выйти"}
+                            nameType="danger"
+                        />
                     </div>
                 </div>
             </div>
