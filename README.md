@@ -29,4 +29,6 @@
 ## Демо:
 ### Добавление пользователя
 
-![demo1](https://user-images.githubusercontent.com/78105380/229367460-771bb822-79c4-41fd-821f-4f53fd49b9f9.gif)
+https://user-images.githubusercontent.com/78105380/229369157-879b6fb7-e1b7-40a4-96b2-23f9e862ea1f.mp4
+
+
