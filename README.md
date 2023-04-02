@@ -29,6 +29,7 @@
 ## Демо:
 ### Добавление пользователя
 ![add_user](https://user-images.githubusercontent.com/78105380/229369324-ac673d32-aef1-4c11-9141-bc81f1e3c620.gif)
+![132](https://user-images.githubusercontent.com/78105380/229369964-f44b196e-69f4-4414-a02c-b0d65e227547.gif)
 
 ### Real-time взаимодействие
 ![Realtime](https://user-images.githubusercontent.com/78105380/229369372-47814f68-d2db-45e2-82af-510e7dade3fe.gif)
