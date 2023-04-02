@@ -27,19 +27,15 @@
 - Socket IO
 
 ## Демо:
+
 ### Добавление пользователя
-![add_user](https://user-images.githubusercontent.com/78105380/229369324-ac673d32-aef1-4c11-9141-bc81f1e3c620.gif)
-![132](https://user-images.githubusercontent.com/78105380/229369964-f44b196e-69f4-4414-a02c-b0d65e227547.gif)
+![add_user](https://user-images.githubusercontent.com/78105380/229370112-74d3b5d6-1b48-4b53-9b15-131b84183fa2.gif)
 
 ### Real-time взаимодействие
-![Realtime](https://user-images.githubusercontent.com/78105380/229369372-47814f68-d2db-45e2-82af-510e7dade3fe.gif)
+![Realime](https://user-images.githubusercontent.com/78105380/229370163-59ddf735-2cf4-4313-9639-7780d832e7ba.gif)
 
 ### Изменение данных профиля
-![change_info](https://user-images.githubusercontent.com/78105380/229369394-f3bbf5b3-2b8a-4807-9e4e-515e21405ff9.gif)
+![change_info](https://user-images.githubusercontent.com/78105380/229370223-ca5f9116-739e-468e-b44f-3af09104bbe9.gif)
 
 ### Изменение аватара
-![avatar](https://user-images.githubusercontent.com/78105380/229369407-908612d5-80d0-4eac-b2b9-eece0717bd9c.gif)
-
-
-
-
+![change_avatar](https://user-images.githubusercontent.com/78105380/229370245-9de3a78f-ce4e-431c-a10b-61c08e6d1aa1.gif)
