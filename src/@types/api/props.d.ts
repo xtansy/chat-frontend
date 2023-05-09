@@ -23,3 +23,8 @@ interface ChatMessageProps {
     text: string;
     imagesFiles: File[];
 }
+
+interface CreatePostProps {
+    text: string;
+    imageFile: File
+}

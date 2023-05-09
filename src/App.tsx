@@ -5,10 +5,10 @@ import { ROUTES } from "@utils/constants";
 import {
     AuthPage,
     HomePage,
-    ProfilePage,
+    SettingsPage,
     ChangeInfoPage,
     ChangePasswordPage,
-    NotFoundPage,
+    ProfilePage
 } from "@pages";
 import { userIsAuthSelector } from "@redux/userSlice/selectors";
 import { useInitial } from "@utils/api/hooks";
@@ -21,10 +21,13 @@ const App = () => {
     return (
         <>
             <Routes>
-                {/* <Route path={"*"} element={<NotFoundPage />} /> */}
                 {isAuth ? (
                     <>
                         <Route path={"*"} element={<HomePage />} />
+                        <Route
+                            path={ROUTES.SETTINGS}
+                            element={<SettingsPage />}
+                        />
                         <Route
                             path={ROUTES.PROFILE}
                             element={<ProfilePage />}

@@ -3,17 +3,20 @@ import { FormOutlined } from "@ant-design/icons";
 const { Text } = Typography;
 
 import { Dispatch, SetStateAction, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { ChatItems } from "./ChatItems";
 import { ROUTES } from "@utils/constants";
 import { ModalAddContact } from "@common";
+import { userIdSelector } from "@redux/userSlice/selectors";
 
 interface HomeLeftProps {
     setActiveDialogId: Dispatch<SetStateAction<string | null>>;
 }
 
 export const HomeLeft: React.FC<HomeLeftProps> = ({ setActiveDialogId }) => {
+    const userId = useSelector(userIdSelector);
 
     const [open, setOpen] = useState<boolean>(false);
 
@@ -33,7 +36,7 @@ export const HomeLeft: React.FC<HomeLeftProps> = ({ setActiveDialogId }) => {
             <ModalAddContact open={open} setOpen={setOpen} />
             <div className="home__left-menu">
                 <Text className="home__left-menu__title" type="secondary">
-                    <Link to={ROUTES.PROFILE}>Профиль</Link>
+                    <Link to={`/profile/${userId}`}>Профиль</Link>
                 </Text>
                 <FormOutlined onClick={showModal} />
             </div>

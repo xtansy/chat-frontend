@@ -13,10 +13,10 @@ import { IMAGES_TYPES } from "@utils/constants";
 
 interface PaperPickerProps {
     setImagesFiles: (cb: (prevImages: File[]) => File[]) => void;
+    MAX_IMAGES: number;
 }
 
-
-export const PaperPicker: React.FC<PaperPickerProps> = ({ setImagesFiles }) => {
+export const PaperPicker: React.FC<PaperPickerProps> = ({ setImagesFiles, MAX_IMAGES }) => {
 
     const onLoadImage = (e: ChangeEvent<HTMLInputElement>) => {
         const filesList = e.target.files;
@@ -31,10 +31,10 @@ export const PaperPicker: React.FC<PaperPickerProps> = ({ setImagesFiles }) => {
             }
 
             setImagesFiles(prevImagesFiles => {
-                if (prevImagesFiles.length + filesArr.length <= 10) {
+                if (prevImagesFiles.length + filesArr.length <= MAX_IMAGES) {
                     return [...prevImagesFiles, ...filesArr];
                 }
-                message.error("Нельзя добавить больше 10 фото!")
+                message.error(`Нельзя добавить больше ${MAX_IMAGES} фото!`)
                 return [...prevImagesFiles]
             })
         }

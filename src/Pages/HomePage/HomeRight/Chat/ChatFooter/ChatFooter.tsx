@@ -11,8 +11,7 @@ import { sendMessage } from "@utils/socket/emits";
 import { userIdSelector } from "@redux/userSlice/selectors";
 
 import { EmojiPickerHover } from "./EmojiPickerHover/EmojiPickerHover";
-import { PaperPicker } from "./PaperPicker/PaperPicker";
-import { ImageLoadedList } from "./ImageLoadedList/ImageLoadedList";
+import { ImageLoadedList, PaperPicker } from "@common";
 
 interface ChatFooterProps {
     dialogId: Dialog["_id"];
@@ -58,7 +57,7 @@ export const ChatFooter: React.FC<ChatFooterProps> = ({ dialogId }) => {
     return (
         <div className="chat__footer">
             <div className="chat__footer-items">
-                <PaperPicker setImagesFiles={setImagesFiles} />
+                <PaperPicker MAX_IMAGES={10} setImagesFiles={setImagesFiles} />
                 <div className="chat__footer-items__textareaBlock">
                     <TextArea
                         className="chat__footer-items__textareaBlock-textarea"

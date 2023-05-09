@@ -1,0 +1,10 @@
+.profile {
+    &__info {
+        margin-top: 60px;
+        width: 100%;
+    }
+
+    &__info>*:not(:last-child) {
+        border-bottom: 1px solid #EAEAEA;
+    }
+}

@@ -29,7 +29,7 @@ export const Chat: React.FC<ChatProps> = ({ dialogId }) => {
     return (
         <div className="chat">
 
-            <ChatHeader avatar={partner.avatar} name={partner.name} dialogId={dialogId} />
+            <ChatHeader avatar={partner.avatar} name={partner.name} dialogId={dialogId} id={partner._id} />
 
             <Messages dialog={dialog} />
 

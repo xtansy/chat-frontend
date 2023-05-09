@@ -10,6 +10,7 @@ import { Avatar, Typography, Popover } from "antd";
 const { Text } = Typography;
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { deleteDialog } from "@utils/api/requests/dialog";
 
@@ -17,9 +18,11 @@ interface ChatHeaderProps {
     name: User["name"];
     avatar: User["avatar"];
     dialogId: Dialog["_id"];
+    id: User["_id"];
 }
 
-export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId }) => {
+export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId, id }) => {
+    const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
 
@@ -31,10 +34,14 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ avatar, name, dialogId }
         await deleteDialog(dialogId);
     }
 
+    const onClickNavigateToUser = () => {
+        navigate(`/profile/${id}`)
+    }
+
     const PopoverContent = () => {
         return (
             <div className="chat__header-popover">
-                <div className="chat__header-popover__item chat__header-popover__item_linkTo">
+                <div onClick={onClickNavigateToUser} className="chat__header-popover__item chat__header-popover__item_linkTo">
                     <IdcardTwoTone className="chat__header-popover__item-icon" />
                     <Text className="chat__header-popover__item-text chat__header-popover__item-text_link">
                         Перейти на страницу

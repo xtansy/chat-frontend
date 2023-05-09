@@ -39,6 +39,9 @@
             "@utils/api/requests/dialog": [
                 "./src/utils/api/requests/dialog"
             ],
+            "@utils/api/requests/post": [
+                "./src/utils/api/requests/post"
+            ],
             "@pages": [
                 "./src/Pages"
             ],

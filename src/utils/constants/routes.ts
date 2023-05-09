@@ -1,7 +1,8 @@
 export const ROUTES = {
     AUTH: "/auth",
     HOME: "/home",
-    PROFILE: "/profile",
+    PROFILE: "/profile/:userId",
     CHANGE_INFO: "/changeInfo",
-    CHANGE_PASSWORD: "/changePassword"
+    CHANGE_PASSWORD: "/changePassword",
+    SETTINGS: "/settings"
 };
