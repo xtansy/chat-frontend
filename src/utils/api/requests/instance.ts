@@ -1,4 +1,6 @@
+import dotenv from "dotenv";
 import axios from "axios";
+dotenv.config();
 // http://localhost:8080/
 // https://chat-backend-nu.vercel.app
 
