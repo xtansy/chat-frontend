@@ -9,3 +9,5 @@ export const userSelector = (state: RootState) => state.userSlice.user;
 export const userIdSelector = (state: RootState) => state.userSlice.user?._id;
 
 export const userLoadingSelector = (state: RootState) => state.userSlice.isLoading;
+
+export const userFriendsSelector = (state: RootState) => state.userSlice.user?.friends;

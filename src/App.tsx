@@ -8,7 +8,9 @@ import {
     SettingsPage,
     ChangeInfoPage,
     ChangePasswordPage,
-    ProfilePage
+    ProfilePage,
+    FriendsPage,
+    LentaPage
 } from "@pages";
 import { userIsAuthSelector } from "@redux/userSlice/selectors";
 import { useInitial } from "@utils/api/hooks";
@@ -27,6 +29,14 @@ const App = () => {
                         <Route
                             path={ROUTES.SETTINGS}
                             element={<SettingsPage />}
+                        />
+                        <Route
+                            path={ROUTES.LENTA}
+                            element={<LentaPage />}
+                        />
+                        <Route
+                            path={ROUTES.FRIENDS}
+                            element={<FriendsPage />}
                         />
                         <Route
                             path={ROUTES.PROFILE}

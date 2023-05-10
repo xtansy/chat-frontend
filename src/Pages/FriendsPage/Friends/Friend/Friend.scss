@@ -1,0 +1,15 @@
+.friend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__left {
+        display: flex;
+        gap: 10px;
+    }
+}

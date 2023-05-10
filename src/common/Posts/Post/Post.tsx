@@ -1,9 +1,12 @@
 import "./Post.scss";
 
-import { Typography, Avatar, Image } from 'antd';
-import { useNavigate } from "react-router-dom";
-import { HeartTwoTone, UserOutlined } from "@ant-design/icons";
+import { Typography, Image } from 'antd';
+import { HeartTwoTone } from "@ant-design/icons";
+
 const { Text } = Typography;
+
+import { AvatarLinked } from "@common";
+import { formatDateInPost } from "@utils/helpers";
 
 interface PostProps {
     post: Post;
@@ -11,27 +14,19 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post, onClickLike }) => {
-    const navigate = useNavigate();
-    const { text, likes, image } = post;
+    const { text, likes, image, createdAt } = post;
     const { name, avatar, _id } = post.user;
-
-    const onClickAvatar = () => {
-        navigate(`/profile/${_id}`);
-    }
 
     return (
         <div className="post">
             <div className="post__header">
-                <Avatar
-                    onClick={onClickAvatar}
-                    className="post__header-avatar"
-                    size="large"
-                    src={avatar}
-                    icon={<UserOutlined />}
+                <AvatarLinked
+                    id={_id}
+                    avatar={avatar}
                 />
                 <div className="post__header-text">
                     <Text className="post__header-text__author">{name}</Text>
-                    <Text type="secondary" className="post__header-text__timestamp">вчера в 14:34</Text>
+                    <Text type="secondary" className="post__header-text__timestamp">{formatDateInPost(createdAt)}</Text>
                 </div>
             </div>
             <div className="post__content">

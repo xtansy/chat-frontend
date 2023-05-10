@@ -35,9 +35,17 @@ export const HomeLeft: React.FC<HomeLeftProps> = ({ setActiveDialogId }) => {
         <div className="home__left">
             <ModalAddContact open={open} setOpen={setOpen} />
             <div className="home__left-menu">
-                <Text className="home__left-menu__title" type="secondary">
-                    <Link to={`/profile/${userId}`}>Профиль</Link>
-                </Text>
+                <div className="home__left-menu__links">
+                    <Text className="home__left-menu__title" type="secondary">
+                        <Link to={`/profile/${userId}`}>Профиль</Link>
+                    </Text>
+                    <Text className="home__left-menu__title" type="secondary">
+                        <Link to={ROUTES.FRIENDS}>Мои друзья</Link>
+                    </Text>
+                    <Text className="home__left-menu__title" type="secondary">
+                        <Link to={ROUTES.LENTA}>Лента</Link>
+                    </Text>
+                </div>
                 <FormOutlined onClick={showModal} />
             </div>
             <Input className='home__left-input' value={term} allowClear placeholder='Поиск среди добавленных' showCount maxLength={20} onChange={onChange} />

@@ -6,3 +6,6 @@ export * from "./ProfileInfo";
 export * from "./PostAddForm";
 export * from "./ImageLoadedList";
 export * from "./PaperPicker";
+export * from "./ButtonFriend";
+export * from "./AvatarLinked";
+export * from "./Posts";

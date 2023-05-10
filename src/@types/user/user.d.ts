@@ -14,4 +14,5 @@ interface User extends UserInfo {
     _id: string;
     role: Role;
     avatar: string;
+    friends: User[];
 }

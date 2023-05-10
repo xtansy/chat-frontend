@@ -45,6 +45,13 @@ const userSlice = createSlice({
             state.errorMessage = null;
             localStorage.removeItem("token");
         },
+        addUserToFriends: (state, { payload }: PayloadAction<User>) => {
+            state.user?.friends.push(payload);
+        },
+        removeUserFromFriends: (state, { payload }: PayloadAction<User["_id"]>) => {
+            if (!state.user) return;
+            state.user.friends = state.user.friends.filter(item => item._id !== payload)
+        }
     },
     extraReducers: (builder) => {
 
@@ -86,5 +93,5 @@ const userSlice = createSlice({
 });
 
 const { actions, reducer } = userSlice;
-export const { logout } = actions;
+export const { logout, addUserToFriends, removeUserFromFriends } = actions;
 export default reducer;

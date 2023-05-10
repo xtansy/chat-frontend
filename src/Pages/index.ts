@@ -5,3 +5,5 @@ export * from "./ChangeInfoPage";
 export * from "./ChangePasswordPage";
 export * from "./NotFoundPage";
 export * from "./ProfilePage";
+export * from "./FriendsPage";
+export * from "./LentaPage";

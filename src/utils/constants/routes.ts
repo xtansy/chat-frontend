@@ -4,5 +4,7 @@ export const ROUTES = {
     PROFILE: "/profile/:userId",
     CHANGE_INFO: "/changeInfo",
     CHANGE_PASSWORD: "/changePassword",
-    SETTINGS: "/settings"
+    SETTINGS: "/settings",
+    FRIENDS: "/friends",
+    LENTA: "/lenta"
 };

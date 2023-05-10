@@ -4,4 +4,5 @@ interface Post {
     user: User;
     likes: User[];
     image?: string;
+    createdAt: string;
 }
