@@ -1,9 +1,9 @@
 import axios from "axios";
 // http://localhost:8080/
-// https://chat-backend-production-4414.up.railway.app/
+// https://chat-backend-nu.vercel.app
 
 const api = axios.create({
-    baseURL: "http://localhost:8080/",
+    baseURL: process.env.BACKEND_URL || "http://localhost:8080/",
 });
 
 export default api;

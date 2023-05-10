@@ -1,9 +1,0 @@
-adaptive for all devices(simple) ---
-page for other users (simple) --- 
-role in profile (simple) ---
-
-messages notifications (hard) ---
-
-
-
-

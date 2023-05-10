@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "index.html",
+            "use": "@vercel/static-build",
+            "config": {
+                "zeroConfig": true
+            },
+            "env": {
+                "BACKEND_URL": "https://chat-backend-nu.vercel.app"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "index.html"
+        }
+    ]
+}
