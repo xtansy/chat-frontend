@@ -1,6 +1,10 @@
 import { io, Socket } from "socket.io-client";
-// http://localhost:8080/
-// https://chat-backend-production-4414.up.railway.app/
+// for local use    http://localhost:8080/
+// for deploy use   https://chat-backend-nu.vercel.app
+
+const BACKEND_URL = import.meta.env.VITE_URL;
+const URL = BACKEND_URL || "http://localhost:8080/";
+
 export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-    "http://localhost:8080/"
+    URL
 );
